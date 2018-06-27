@@ -1,0 +1,141 @@
+
+body{
+	background-color: white;
+	font-size: 14px;
+	line-height: 130%;
+	color: #3d464d;
+	font-family:  "Calibri","Candara", "Segoe", "Segoe UI", "Optima", "Arial", "sans-serif";
+} .indent1 {
+	margin-left:2em;
+	} .indent2 {
+	margin-left:3em;
+} .indent3 { margin-left:3em; } a:link{
+	color: #f07860;
+} a:hover{
+	color: #f0ad4e;
+}
+a:visited{
+	color: #D2322D;} 
+.indent4 {
+	margin-left:0.5em;
+	line-height: normal;
+}
+.ibig {
+	font-size:1.3em;
+	display:inline-block;
+	vertical-align:middle;
+}
+.ibig2 {
+	font-size:24px;
+}
+.toc {
+	font-size: 15px;
+	font-family: Century Schoolbook, Bell MT, Baskerville, “Baskerville Old Face”, “Hoefler Text”, Garamond, “Times New Roman”, serif;
+	line-height: 100%;
+	font-weight: bold;
+	margin-left: 1.2em;
+}H1{
+	font-size: 18px;
+	font-family: Century Schoolbook, Bell MT, Baskerville, “Baskerville Old Face”, “Hoefler Text”, Garamond, “Times New Roman”, serif;
+	line-height: 130%;
+	font-weight: bold;
+	
+} H2{
+	font-size: 15px;
+	font-family: Century Schoolbook, Bell MT, Baskerville, “Baskerville Old Face”, “Hoefler Text”, Garamond, “Times New Roman”, serif;
+	line-height: 130%;
+	font-weight: bold;
+	margin-left: 1.2em;
+} H3{
+	font-size: 14px;
+font-family: Century Schoolbook, Bell MT, Baskerville, “Baskerville Old Face”, “Hoefler Text”, Garamond, “Times New Roman”, serif; 								line-height: 130%;
+	font-weight: bold;
+	margin-left: 2em;
+} H4{
+	font-size: 16px;
+font-family: “Gill Sans”, “Gill Sans MT”, Calibri, sans-serif; 						line-height: 130%;
+	font-weight: normal;
+	margin-left:
+5.4em;
+	color: #FFF;
+}H5 {
+	font-family: “Gill Sans”, “Gill Sans MT”, Calibri, sans-serif;
+	font-size: 16px;
+	line-height: 130%;
+	margin-left: 7.4em;
+	font-weight: normal;
+}
+table {
+	border-collapse:collapse;
+	border:none;
+}
+th, td {
+	border-bottom:1px solid #f07860;
+	padding:0.3em;
+	border-left:none;
+	border-right:none;
+}
+th {
+	border-top:1px solid #f07860;
+}
+.tablehead{
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	line-height:20px;
+	background-color:#f07860;
+	text-align: center;
+} .tabletail{ color: red; font-size: 14px; font-weight:
+bold; line-height:20px; background-color:lightgreen; } .tablebody{
+	font-size: 14px;
+	line-height:20px;
+	background-color:white;
+	;
+	font-family: "sans-serif", "Arial", "Tahoma"
+	font-weight: normal;
+	text-align: left;
+} .footnote{ font-size:
+11 px; font-family: Verdana, "Helvetica", Arial; line-height: 15px; font-style: italic; }
+li{
+	font-size: 14px;
+	font-family: "sans-serif", "Arial", "Tahoma"
+	line-height: 22px;
+} .note{ font-size:
+14 px; font-family: Arial,??; line-height: 14px; font-style: italic; } .sectionbar{
+font-weight:bold; font-size:15pt; color: black; background-color: yellow; width:
+100%; padding-top: 2px; } pre { font-size: 14px; font-family: "sans-serif", "Arial", "Tahoma";
+line-height: 14px; }.SectionHead {  font-family: "sans-serif", "Arial", "Tahoma"; font-size: 14px; line-height: 20px; font-weight: bold; color: #333399}
+.iList {  font-family: "sans-serif", "Arial", "Tahoma"; font-size: 14px; line-height: 30px}
+.reg {  background-position: top; line-height: normal}
+.unnamed1 {  }
+.note1 {
+    background-color: whitesmoke;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;   
+	padding-right: 1em;
+	padding-left: 1em
+}
+body,td,th {
+	font-family:  Calibri,Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+}
+a.anchor {
+    display: block;
+    position: relative;
+    top: -60px;
+    visibility: hidden;
+}
+.toc {	font-size: 16px;
+	font-family: "微软雅黑", "Arial", "Helvetica", "sans-serif";
+	line-height: 14px;
+	font-weight: bold;
+	margin-left: 1.2em;
+}
+.toc2 {	font-size: 14px;
+	font-family: "微软雅黑", "Arial", "Helvetica", "sans-serif";
+	line-height: 12px;
+	font-weight: bold;
+	margin-left: 2em;
+}
+img.res1 {
+	zoom:70%;
+}

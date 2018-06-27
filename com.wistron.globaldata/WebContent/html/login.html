@@ -1,0 +1,164 @@
+ <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title id="ltitle">登录</title>
+		<link rel="stylesheet" type="text/css" href="/logincss/style1.css"/>
+		<link rel="stylesheet" type="text/css" href="/logincss/toastr.css"/>
+		<link type="image/x-icon" href="/loginimages/favicon.ico" rel="icon"/>
+		<script src="/loginjs/jquery.min-1.8.js"></script>
+		<script src="/loginjs/jquery.cookie.js"></script>
+		<script src="/loginjs/toastr.min.js"></script>
+		<script src="/loginjs/jquery.i18n.properties.js"></script>
+		<script src="/loginjs/language-lnt.js"></script>
+	</head>
+	<body>
+	<div>
+		<div id="firstDiv" class="fistDivClass" style="background: #373737; height: 40px;color: white;">
+			<span style="color:#ec5944;font-size: 30px ;">STEM</span><span style="font-size: 27px;">achine.</span>
+		</div>
+			
+		<div class="secondDivClass" align="center" style="margin-top:10%;margin-bottom:15%;">
+				<div>
+					<div class="secondDiv1" style="font-size: 45px;line-height:50px">WELCOME</div>
+					<div style="width: 250px;text-align: left;">
+						<div class="secondDiv2" style="font-size: 45px;line-height:50px">TO THE</div>
+					</div>
+					<div style="width: 250px;text-align: left;">
+						<span style="color:#ec5944;font-size: 43px">
+							<strong>STEM</strong></span><span style="font-size: 41px;">achine.</span>
+					</div>
+				</div>	
+				<div id="" style="background: white;width: 250px;height: 240px;border-color: black;">
+					<form id="form" action="/login.action" method="post" target="_blank">
+						<div id="" style="display: inline-block;margin: 15px 0; height: 30px;">
+							<input type="text" id="iname" name="username" class="input2" placeholder=" 用户名"/>
+						</div>
+						<div  style="display: inline-block;margin: 15px 0;height: 30px;">
+							<input id="ipass" type="password" name="password" class="input2" placeholder=" 密码"/>
+						</div>
+						<div style="text-align: left;">
+							<input id="checkbox" type="checkbox" style="margin-left: 40px;border-color: #ec5944;" />
+							<label id="rlabel" style="font-size: 15px;color: #ec5944;">记住密码</label>
+						</div>
+						<div style="display: inline-block;margin: 15px 0;height: 30px;">
+								<input id="submit" type="button" onclick="login()" value="登  录" class="input1"/>
+						</div>
+					</form>
+					<span id="span" style="display: inline-block;width:250px;text-align:center"></span>
+				</div>
+				<div id="links">
+					<span><a href="/htm/newpass.html" style="color: black;text-decoration:none;">修改密码</a></span>&nbsp;&nbsp;|&nbsp;&nbsp;<span onclick="tips()" id="forget"><a href="#" style="color: #ec5944;text-decoration:none;">忘记密码？</a></span>
+				</div>
+		</div>
+		
+		<div id="thirdDiv" align="center" class="thirdDivClass" style="position: fixed;margin-right:5px">
+			<span style="color: white;display: block;line-height: 40px;">Copyright &copy; 2018.Wistron Corporation All Rights Peserved.</span>
+		</div>
+	</div>
+<script type="text/javascript">
+	$(window).load(function(){
+		localStorage.clear();
+		//页面加载，初始化弹出框的设置
+		toastr.options.positionClass = 'toast-myself';
+		toastr.options.timeOut = '1000';
+	    //页面加载完，判断cookie中是否存有用户信息
+		if($.cookie("rebuser")!=null)
+	    {
+	    	var str=$.cookie("rebuser");
+			var index=str.indexOf('#');
+			var len=str.length;
+	    	$("#checkbox").prop("checked",true);
+	    	$("#iname").val(str.substring(0,index));
+	        $("#ipass").val(str.substring(index+1,len));
+	    }
+	  //页面加载时会判断用户名栏是否为空，若为空则，将提交按钮设为不可用
+	    var val=null;
+	    val=$("#iname").val();
+		if(val.trim()==""){
+			$("#submit").prop("disabled",true);
+			} 
+	});
+	//点击登录时调用此方法，若选中记住密码，将调用此方法，将用户信息存入cookie
+	function saveCookie(){
+		if($("#checkbox").prop("checked")==true){
+			var uName = $("#iname").val();
+			var pw = $("#ipass").val();
+			var str1=uName+"#";
+			str1=str1+pw;
+			$.cookie("rebuser", str1, { expires: 7 }); 
+		} else{
+			$.cookie("rebuser", null, { expires: -1 }); 
+		}
+	};
+	//点击登录时调用的方法，根据后台反回值，判断跳转到学生或老师用户界面
+   function login(){
+	   var uName = $("#iname").val();
+	   if(uName.trim()!=""&&$("#ipass").val().trim()!=""){
+	     if(uName.toLowerCase().trim()=="admin"){
+	    	 url="/superlogin.action"; 
+	     }else{
+	    	 url="/login.action";	 
+	     }
+		 $.ajax({
+	                type: "POST",//方法类型
+	                url: url,//url
+	                data: $('#form').serialize(),
+	                success: function (error) {
+	                    if(error=="ok1"){
+	                    	saveCookie();
+	                    	 window.location.href="/teacher/toQueryTeacher.taction"; 
+	                    	 
+	                    }else if(error=="ok3"){
+	                    	saveCookie();
+	                    	window.location.href="/htm/administration.html";
+	                    }
+	                    else if(error=="error1"){
+	                    	$("#span").html($.i18n.prop('errortip4'));
+	                    }else if(error=="error2"){
+	                    	$("#span").html($.i18n.prop('errortip2'));
+	                    }else if(error==""){
+	                    	toastr.warning($.i18n.prop('errortip5'));
+	                    }
+	                    else{
+	                    	saveCookie();
+	                    	window.location.href="/stemachine/index.do";
+	                    	 } 
+	                 },
+	                error : function() {
+	                	toastr.warning($.i18n.prop('unknowerror'));
+	                   
+	                },
+		             
+	        });
+	   }else if(uName.trim()==""){
+		   $("#span").text($.i18n.prop('errortip1'));
+	   }else{
+		   $("#span").text($.i18n.prop('errortip3')) 
+	   }
+	};
+	$("#iname").focus(function(){ 
+		$("#submit").prop("disabled",false);
+	});
+	$("#ipass").focus(function(){ 
+		$("#submit").prop("disabled",false);
+	});
+	//点击忘记密码时执行的函数
+	function tips(){
+		 toastr.warning($.i18n.prop('tip'));
+	}
+	
+	//enter
+	$("#iname").keyup(function(event){
+      if(event.keyCode ==13){
+       $("#submit").trigger("click");
+       }
+     });
+	$("#ipass").keyup(function(event){
+	      if(event.keyCode ==13){
+	       $("#submit").trigger("click");
+	       }
+	     });
+	</script>
+	</body>
+</html>

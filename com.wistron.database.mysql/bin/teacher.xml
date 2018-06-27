@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="teacher">
+	<select id="getPassWordByName" parameterType="java.lang.String" resultType="java.lang.String">
+    	select distinct password from teacher where number = #{username}
+    </select>
+    <select id="getNameById" parameterType="int" resultType="java.lang.String">
+    	select name from teacher where number = #{number}
+    </select>
+    <select id="getTeacherByNumber" parameterType="java.lang.Integer" resultType="com.wistron.globaldata.Teacher">
+       select name,grade,class tclass from teacher where number=#{number} 
+     </select>
+    <update id="updatePWByName" parameterType="java.util.HashMap">
+        update teacher set password=#{newpass} where number=#{username}
+    </update>
+    
+    <insert id="addTeacher" parameterType="com.wistron.globaldata.Teacher">
+    	insert into teacher(number,school,grade,class,name,subject,password) values(#{number},#{school},#{grade},#{tclass},#{name},#{subject},#{password})
+    </insert>
+    
+    <update id="updateTeacherById" parameterType="com.wistron.globaldata.Teacher">
+        update teacher set name=#{name}, number=#{number}, class=#{tclass}, grade=#{grade}, password=#{password} where id=#{id}
+    </update>
+    
+    <delete id="delTeacherById" parameterType="int">
+    	delete from teacher where id=#{id}
+    </delete>
+    
+    <select id="getTeacherList" parameterType="java.util.HashMap" resultType="com.wistron.globaldata.Teacher">
+			 select a.id,a.name,a.number,a.password,count(b.id) as subjectCount from teacher a left   join  subject b  on   a.number = b.teacherid
+			<where>
+	             <if test="tname!=null and tname!=''">
+	                 a.name like '%${tname}%' or a.number like '%${tname}%'
+	             </if>
+        	</where>
+        	group BY a.`number`
+        	order by convert(a.${sort} USING gbk) ${order} limit ${offset}, ${limit}	
+	</select>
+	
+	<select id="queryTeacherList" parameterType="java.util.HashMap" resultType="com.wistron.globaldata.Teacher">
+			select t.id,t.name,t.number,t.school,s.subjectname as subject,t.password,t.grade,t.class as tclass from teacher t left join subject s on t.number=s.teacherid
+			<where>
+	             <if test="tname!=null and tname!=''">
+	                 t.name like '%${tname}%' or t.number like '%${tname}%'
+	             </if>
+	             <if test="grade!=null and grade!=''">
+	                 t.grade = ${grade} 
+	             </if>
+	             <if test="cno!=null and cno!=''">
+	                 and t.class = ${cno} 
+	             </if>
+	             <if test="subject!=null and subject!=''">
+	                 and t.subject = '${subject}'
+	             </if>
+        	</where>
+        	order by t.number desc
+	</select>
+	
+	<select id="getTeacherCount" resultType = "int" parameterType="String">
+			select count(number) from teacher
+			<where>
+	             <if test="tname!=null and tname!=''">
+	                 name like '%${tname}%' or number like '%${tname}%'
+	             </if>
+        	</where>
+	</select>
+	<select id="tnoExist" resultType="int" parameterType="String">
+		select count(*) from teacher where number = #{tno}
+	</select>
+	<select id="getSubjectIdByid" resultType="com.wistron.globaldata.Subject" parameterType="String">
+		select id,subjectname from subject where teacherid = #{id}
+	</select>
+	<delete id="delSubjectByTeacher" parameterType="int">
+		delete from subject where teacherid in( select number from teacher where id=#{id});
+	</delete>
+	
+</mapper>

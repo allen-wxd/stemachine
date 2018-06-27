@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="student">
+	 <select id="getPassWordByName" parameterType="java.lang.String" resultType="java.lang.String">
+    	select password from student where sno= #{username}
+    </select>
+    <select id="getNameById" parameterType="java.lang.Integer" resultType="java.lang.String">
+    	select sname from student where id = #{username}
+    </select>
+    <update id="updatePWByName" parameterType="java.util.HashMap">
+        update student set password=#{newpass} where sno=#{username}
+    </update>
+    <select id="getStudentsByGrade" parameterType="com.wistron.globaldata.Student" resultType="com.wistron.globaldata.Student">
+        select sno,sname from student where grade=#{grade} and cno=#{cno}
+    </select>
+    <select id="getStudentByName" parameterType="com.wistron.globaldata.Student" resultType="com.wistron.globaldata.Student">
+        select sno,sname from student where grade=#{grade} and cno=#{cno} and sname like '%${sname}%'
+    </select>
+    
+    
+     <select id="orderByName" parameterType="java.util.HashMap" resultType="com.wistron.globaldata.Student">
+        select sno,sname from student
+	        <where>
+		        <if test="grade!=null">
+		            and grade=#{grade}
+		        </if>
+		        <if test="cno!=null">
+		            and cno=#{cno}
+		        </if>
+	            <if test="name!=null">
+	               and sname like '%${name}%'
+		        </if>
+	        </where> 
+       order by convert(sname USING gbk)
+	 </select>
+     <select id="orderById" parameterType="java.util.HashMap"  resultType="com.wistron.globaldata.Student">
+         select sno,sname from student
+          <where>
+		        <if test="grade!=null">
+		            and grade=#{grade}
+		        </if>
+		        <if test="cno!=null">
+		            and cno=#{cno}
+		        </if>
+	            <if test="name!=null">
+	               and sname like '%${name}%'
+		        </if>
+	        </where>
+         order by sno
+    </select>
+    
+    
+    <select id="getStudentOneAll" parameterType="java.lang.String" resultType="com.wistron.globaldata.Student">
+        select * from student where sno=#{name}
+    </select>
+    <select id="getGradeAndClassBySubId" parameterType="String" resultType="com.wistron.globaldata.Student">
+         select grade,cno from student where subjectid like concat(concat('%',#{username}),'%')
+    </select>
+</mapper>

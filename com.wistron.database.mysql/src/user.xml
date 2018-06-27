@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wistron.globaldata.UsersMapper">
+
+	<insert id="saveUser" parameterType="com.wistron.globaldata.Users">
+        insert into users(loginname,password,phone,email,realname) values(#{loginName},#{passWord},#{phone},#{email},#{realname});
+    </insert>
+    
+    <select id="getPasswordByName" parameterType="java.lang.String" resultType="java.lang.String">
+    	select password from users where loginname = #{loginname}
+    </select>
+    <!-- 判断用户名是否存在 -->
+     <select id="exitUserName" parameterType="java.lang.String" resultType="int">
+    	select count(*) from users where loginname = #{loginname}
+    </select>
+    
+</mapper>

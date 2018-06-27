@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="/loginjs/jquery.min.js"></script>
+		<script src="/loginjs/bootstrap.min.js"></script>
+		<script src="/loginjs/toastr.min.js"></script>
+		<script src="/loginjs/jquery.i18n.properties.js"></script>
+		<script src="/loginjs/language-lnt.js"></script>
+		<link rel="stylesheet" type="text/css" href="/logincss/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/logincss/toastr.css"/>
+		<link href="/loginimages/favicon.ico"/ rel="icon">
+		<title id="ntitle">修改密码</title>
+	</head>
+	<style>
+		body{
+			background: whitesmoke;
+		}
+	</style>
+	<body >
+		<div id="" class="container text-center" style="margin-top: 10%;margin-bottom: 20%;" >
+			
+			<form id="form" role="form" class="form-horizontal" >
+				<h1><strong>修改密码</strong></h1>
+				<div class="form-group ">
+					<label id="nlabel1" for="name" class="col-sm-4 control-label">用户名（必填）</label>
+				  <div class="col-sm-4">
+				    <input type="text"  id="name" value="" name="username" class="form-control input-lg"/>
+				  </div>
+				</div>
+				<div class="form-group">
+					<label id="nlabel2" for="passwordid" class="col-sm-4 control-label">密 码（必填）</label>
+					<div class="col-sm-4">
+					<input type="password"  id="passwordid" value="" name="password" class="form-control input-lg"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label id="nlabel3" for="newpassid" class="col-sm-4 control-label">新密码（必填）</label>
+					<div class="col-sm-4">
+					<input type="password"  id="newpassid" value="" name="newpass" class="form-control input-lg"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label id="nlabel4" for="newpass1" class="col-sm-4 control-label">确认新密码（必填）</label>
+					<div class="col-sm-4">
+					<input type="password"  id="newpass1" value="" class="form-control input-lg"/>
+					</div>
+				</div>
+				<div class="form-group">
+				    <div class="col-sm-offset-4 col-sm-1">
+				    <button type="button" id="nsubmit" class="btn btn-default">提交</button>
+				    </div>
+				    <div class="col-sm-offset-2 col-sm-1">
+				    <a id="back" class="btn btn-default" href="/htm/login.html">返回</a>
+				    </div>
+				</div>
+			</form>
+			<br/>
+			<div id="tips"  class="input-lg">
+			</div>
+        </div>
+	</body>
+	<script type="text/javascript">
+		var flag1=false;
+		var flag2=false;
+		var flag3=false;
+		var flag4=false;
+		$(window).load(function(){
+			$("#submit").attr('disabled',true); 
+			toastr.options.positionClass = 'toast-top-center';
+			toastr.options.timeOut = '1000';
+		});
+		//用户名验证
+		$("#name").blur(function(){
+			if($("#name").val().trim()!=""){
+				$("#tips").html("");
+				flag1=true;
+			}else{
+				flag1=false;
+			}
+		});
+		//密码验证
+		$("#passwordid").blur(function(){
+			if($("#passwordid").val().trim()==""){
+				flag2=false;
+			}else{
+				$("#tips").html("");
+				flag2=true;
+            }
+		});
+		
+	    //新密码输入验证，3到11位字符
+		 $("#newpassid").bind("input propertychange change",function(event){
+           if($("#newpassid").val().trim().length<3||$("#newpassid").val().trim().length>11){
+        	   $("#tips").html($.i18n.prop('verification7'));
+        	   flag4=false;
+           }else{
+        	   flag4=true;
+        	   $("#tips").html("");
+           }
+          });
+		//新密码验证
+		$("#newpassid").blur(function(){
+			if($("#newpassid").val().trim()==""){
+				flag3=false;
+			}else{
+				$("#tips").html("");
+				flag3=true;
+			}
+		});
+ 		$("#newpass1").focus(function(){
+			$("#submit").attr('disabled',false);
+		});
+		$("#newpassid").focus(function(){
+			$("#submit").attr('disabled',false);
+		});
+		$("#passwordid").focus(function(){
+			$("#submit").attr('disabled',false);
+		});
+		$("#name").focus(function(){
+			$("#submit").attr('disabled',false);
+		});
+	
+		//提交
+		$("#nsubmit").click(function(){
+		  if($("#name").val().toLowerCase().trim()!="admin"){	
+			if(flag4&&flag1&&flag2&&flag3&&$("#newpassid").val()!=$("#passwordid").val()&&
+					$("#newpassid").val()==$("#newpass1").val()){
+					$.ajax({
+		               type: "POST",//方法类型
+		               url: "/update.action" ,//url
+		               data: $('#form').serialize(),
+		               success: function (error) {
+		                   //密码修改成功！！请重新登陆！！      ok
+		                   //密码修改失败，请确定用户名与密码填写正确！！   nook
+		                   if(error=="ok"){
+		                	   toastr.warning($.i18n.prop('uerrortip6'));
+		                	   setTimeout(function(){location.href="/htm/login.html"; },"800");  
+		                   }else{
+		                	   toastr.warning($.i18n.prop('uerrortip3'));
+		                   }
+		                   	
+		               },
+		               error : function() {
+		            	   toastr.warning($.i18n.prop('unknowerror'));
+		                  
+		               },
+		           });
+		      }else if(!flag1){
+		    	  $("#tips").html($.i18n.prop('errortip1'));
+		      }else if(!flag2){
+		    	  $("#tips").html($.i18n.prop('uerrortip')); 
+		      }else if($("#newpassid").val().trim()==""){
+		    	  $("#tips").html($.i18n.prop('uerrortip1'));
+		      }else if(!flag4){
+		    	  $("#tips").html($.i18n.prop('uerrortip7'));
+		      }else if($("#newpassid").val()==$("#passwordid").val()){
+		    	  $("#tips").html($.i18n.prop('uerrortip5'));
+		      }else{
+		    	  $("#tips").html($.i18n.prop('uerrortip4'));
+		      }
+		   }else{
+			   toastr.warning($.i18n.prop('utip1')); 
+		   }
+		});
+		//enter
+		$("body").keyup(function(event){
+	        if(event.keyCode ==13){
+	          $("#submit").trigger("click");
+	        }
+        });
+	</script>
+</html>

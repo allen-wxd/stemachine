@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wistron.globaldata.StudentMapper">
+
+	<insert id="addStudent" parameterType="com.wistron.globaldata.Student" >
+	        insert into student ( sno ,sname ,seatnum ,cno ,grade ,password) values (#{sno},#{sname},#{seatNum},#{cno},#{grade},#{password})   
+	</insert>
+	
+	<update id="updateStudentById" parameterType="com.wistron.globaldata.Student">
+			update student set sname= #{sname}, sno= #{sno}, seatnum= #{seatNum}, grade= #{grade}, cno= #{cno}, password=#{password} where id = #{id}
+	</update>
+	
+	<select id="getStudentList" parameterType="java.util.HashMap" resultType="com.wistron.globaldata.Student">
+			select * from student
+			<where>
+	             <if test="grade!=null and grade!=''">
+	                 and grade = '${grade}' 
+	             </if>
+	             <if test="cno!=null and cno!=''">
+	                 and cno = '${cno}' 
+	             </if>
+	             <if test="subject!=null and subject!=''">
+	             	 and FIND_IN_SET('${subject}',subjectid)
+	             </if>
+	             <if test="sname!=null and sname!=''">
+	                 and (sname like '%${sname}%' or sno like '%${sname}%')
+	             </if>
+        	</where>
+        	order by convert(${sort} USING gbk) ${order} limit ${offset}, ${limit}	
+	</select>
+	
+	<select id="queryStudentList" parameterType="java.util.HashMap" resultType="com.wistron.globaldata.Student">
+		select * from student
+		<where>
+             <if test="sname!=null and sname!=''">
+                 (sname like '%${sname}%' or sno like '%${sname}%') 
+             </if>
+             <if test="grade!=null and grade!=''">
+                 and grade = '${grade}' 
+             </if>
+              <if test="cno!=null and cno!=''">
+                 and cno = '${cno}' 
+             </if>
+             <if test="subjectid!=null and subjectid!=''">
+                 and FIND_IN_SET('${subjectid}',subjectid) 
+             </if>
+       	</where>
+       	order by sno desc
+	</select>
+	
+	<select id="getStudentCount" resultType = "int" parameterType="String">
+			select count(*) from student 
+			<where>
+	             <if test="sname!=null and sname!=''">
+	                 (sname like '%${sname}%' or sno like '%${sname}%') 
+	             </if>
+	             <if test="grade!=null and grade!=''">
+	                 and grade = '${grade}' 
+	             </if>
+	             <if test="cno!=null and cno!=''">
+	                 and cno = '${cno}' 
+	             </if>
+	             <if test="subject!=null and subject!=''">
+	             	 and FIND_IN_SET('${subject}',subjectid)
+	             </if>
+        	</where>
+	</select>
+	
+	<delete id="delStudentById" parameterType="int">
+    	delete from student where id=#{id}
+    </delete>
+    
+    <select id="getStudentBySno" resultType = "com.wistron.globaldata.Student" parameterType="String">
+    	select * from student where sno = #{sno}
+    </select>
+    
+    <select id="getNameByTno" resultType="String" parameterType="String">
+    	select name from teacher where number = #{tno}
+    </select>
+    
+    <select id="getCnoByGrade" resultType="String" parameterType="String">
+    	select distinct cno from student where grade = #{grade}
+    </select>
+    
+    <select id="getSubjectId" resultType="String" parameterType="String" >
+    	select subjectid from student where id=#{id}
+    </select>
+    
+    <update id="updateSubjectidById" parameterType="java.util.List">
+    	update student set subjectid = #{1} where id = #{0}
+    </update>
+    
+    <select id="snoExist" resultType="int" parameterType="String">
+    	select count(*) from student where sno = #{sno}
+    </select>
+    
+    <select id="getSubjectCount" resultType = "com.wistron.globaldata.Student" parameterType="String">
+    	select  grade,cno,count(*) as count from student where FIND_IN_SET('${_parameter}',subjectid) GROUP BY grade,cno
+    </select>
+    
+    <select id="getGrade" resultType="String">
+    	select DISTINCT grade from student order by grade desc
+    </select>
+</mapper>
+

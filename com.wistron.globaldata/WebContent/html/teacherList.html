@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" charset="utf-8"/>
+    <title>教师列表</title>
+    <script src="/loginjs/jquery.js"></script>
+    <script src="/loginjs/bootstrap.js"></script>
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/font-awesome.css">
+    <script type="text/javascript" src="/loginjs/bootstrapValidator.js"></script>
+    
+    <script src="/loginjs/bootstrap-table.js"></script>
+    <link href="/logincss/bootstrap-table.css" rel="stylesheet" />
+    <script src="/loginjs/bootstrap-table-zh-CN.js"></script>
+    
+    <script src="/loginjs/toastr.min.js"></script>
+    <link href="/logincss/toastr.css" rel="stylesheet" />
+    
+    <script src="/loginjs/bootbox.js"></script>
+    <script src="/loginjs/bootstrap-table-export.js"></script>
+    <script src="/loginjs/jquery.i18n.properties.js"></script>
+    <script src="/loginjs/language_teacher.js"></script>
+</head>
+<script type="text/javascript">
+toastr.options.positionClass = 'toast-top-center';
+$(function () {
+	var language=navigator.language;
+    language = language.replace("-","_");
+    if(language=="zh_CN" || language=="zh_TW"){
+    	bootbox.setLocale(language);
+    }
+    $('#subname').text($.i18n.prop('subjectName'));
+    $('#t_grade').text($.i18n.prop('grade'));
+    $('#t_class').text($.i18n.prop('class'));
+    $('#t_count').text($.i18n.prop('studentCount'));
+    $('#t_sure').text($.i18n.prop('ttip4'));
+    //1.初始化Table
+    var oTable = new TableInit();
+    oTable.Init();
+    //2.初始化Button的点击事件
+    var oButtonInit = new ButtonInit();
+    oButtonInit.Init();
+    $('#teacherForm').bootstrapValidator({
+        message: '输入值不合法',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        excluded: [':disabled'],
+        fields: {
+        	txt_tname: {
+                message: '教师姓名不合法',
+                validators: {
+                    notEmpty: {
+                        message: $.i18n.prop('verification21')
+                    },
+                    stringLength: {
+                        min: 2,
+                        max: 8,
+                        message: $.i18n.prop('verification4')
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_\. \s. \u4e00-\u9fa5 ]+$/,
+                        message: $.i18n.prop('verification5')
+                    }
+                }
+            }
+            , txt_number: {
+                validators: {
+                    notEmpty: {
+                        message: $.i18n.prop('verification24')
+                    },
+                    stringLength: {
+                        min: 3,
+                        max: 11,
+                        message: $.i18n.prop('verification16')
+                    },remote: {//ajax验证。server result:{"valid",true or false} 向服务发送当前input name值，获得一个json数据。例表示正确：{"valid",true}  
+                        url: '/user/private/exist.action',//验证地址
+                        message: $.i18n.prop('verification25'),//提示消息
+                        delay :  2000,//每输入一个字符，就发ajax请求，服务器压力还是太大，设置2秒发送一次ajax（默认输入一个字符，提交一次，服务器压力太大）
+                        type: 'POST'//请求方式
+                        /**自定义提交数据，默认值提交当前input value
+                         *  data: function(validator) {
+                              return {
+                                  password: $('[name="passwordNameAttributeInYourForm"]').val(),
+                                  whatever: $('[name="whateverNameAttributeInYourForm"]').val()
+                              };
+                           }
+                         */
+                    }
+                }
+            }, txt_password: {
+                validators: {
+                    notEmpty: {
+                        message: $.i18n.prop('verification15')
+                    }, 
+                    stringLength: {
+                        min: 3,
+                        max: 11,
+                        message: $.i18n.prop('verification7')
+                    }
+                }
+            }
+        }
+    });
+});
+var TableInit = function () {
+    var oTableInit = new Object();
+    //初始化Table
+    oTableInit.Init = function () {
+        $('#tb_teacher').bootstrapTable({
+            url: '/user/private/teacherList.action',         //请求后台的URL（*）
+            locale: navigator.language,
+            method: 'get',                      //请求方式（*）
+            toolbar: '#toolbar',                //工具按钮用哪个容器
+            striped: true,                      //是否显示行间隔色
+            cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            pagination: true,                   //是否显示分页（*）
+            sortable: true,                     //是否启用排序
+            sortOrder: "desc",                   //排序方式
+            queryParams: oTableInit.queryParams,//传递参数（*）
+            sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+            pageNumber:1,                       //初始化加载第一页，默认第一页
+            pageSize: 10,                       //每页的记录行数（*）
+            pageList: [5, 10, 15, 25, 50, 100],        //可供选择的每页的行数（*）
+            paginationPreText: $.i18n.prop('previous'),
+            paginationNextText: $.i18n.prop('next'),
+            search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+            strictSearch: true,
+            showColumns: true,                  //是否显示所有的列
+            showRefresh: true,                  //是否显示刷新按钮
+            minimumCountColumns: 2,             //最少允许的列数
+            clickToSelect: true,                //是否启用点击选中行
+            height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+            uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+            showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
+            cardView: false,                    //是否显示详细视图
+            detailView: false,                   //是否显示父子表
+            showExport: false,                     //是否显示导出
+            exportDataType: "basic",              //basic', 'all', 'selected'.
+            exportTypes:['excel'],  //导出文件类型  
+            columns: [{
+                checkbox: true
+            }, {
+                field: 'name',
+                title: $.i18n.prop('name'),
+                align: "center",
+                sortable: true  
+            }, {
+                field: 'number',
+                title:  $.i18n.prop('teacherId'),
+                align: "center",
+                sortable: true 
+            },{
+            	field: 'subjectCount',formatter: function (value, row, index) { 
+                	var number=row.number;
+                	var name = row.name
+                    return value+" <a href='javascript:detailSubject(\""+number+"\",\""+name+"\");'><i style='color:#f07860;margin-left:10px;' class='fa fa-exclamation-circle fa-1x'></i></a>";
+                } ,
+                title: $.i18n.prop('courseCount'),
+                align: "center" 
+            }, 
+            {
+                field: 'password',
+                title: $.i18n.prop('password'),
+                align: "center"
+            }],
+            onColumnSwitch: function (field, checked) {
+            	if(field=="password"){
+            		field = "password-2";
+            	}
+            	localStorage.setItem(field,checked);
+                return false;
+            }
+        });
+        var storage = window.localStorage;
+        for (var i=0, len = storage.length; i  <  len; i++){   
+      	  var key = storage.key(i);  
+      	  var value = storage.getItem(key);
+      	  if(key=="password-2"){
+      		  key = "password";
+      	  }else if(key=="password-1"){
+      		  continue;
+      	  }
+      	  if(value=="false"){
+      		  $('#tb_teacher').bootstrapTable('hideColumn', key);
+      	  }
+     	}
+    };
+    
+  //得到查询的参数
+    oTableInit.queryParams = function (params) {
+        var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+            limit: params.limit,   //页面大小
+            offset: params.offset,  //页码
+            tname: $("#tname").val(),
+            grade: $("#grade").val(),
+            cno: $("#cno").val(),
+            subject: $("#subject").val(),
+            sort: params.sort,      //排序列名  
+            sortOrder: params.order //排位命令（desc，asc） 
+        };
+        return temp;
+    };
+    return oTableInit;
+};
+
+
+var ButtonInit = function () {
+    var oInit = new Object();
+    var postdata = {};
+
+    oInit.Init = function () {
+    	 $(".import_excel").text($.i18n.prop('import'));
+    	 $("#t_name").text($.i18n.prop('name'));
+         $('#txt_tname').attr('placeholder',$.i18n.prop('name'));
+         $("#t_num").text($.i18n.prop('teacherId'));
+         $('#txt_number').attr('placeholder',$.i18n.prop('teacherId'));
+         $("#t_pass").text($.i18n.prop('password'));
+         $('#txt_password').attr('placeholder',$.i18n.prop('password'));
+        //初始化页面上面的按钮事件
+         $("#btn_add").click(function () {
+        	$("#teacherForm").data('bootstrapValidator').resetForm();
+            $("#myModalLabel").text($.i18n.prop('new'));
+            $("#myModal").find(".form-control").val("");
+            $('#myModal').modal()
+
+            postdata.id = "";
+        });
+
+        $("#btn_edit").click(function () {
+        	$("#teacherForm").data('bootstrapValidator').resetForm();
+            var arrselections = $("#tb_teacher").bootstrapTable('getSelections');
+            if (arrselections.length > 1) {
+                toastr.warning($.i18n.prop('onlySelecte'));
+
+                return;
+            }
+            if (arrselections.length <= 0) {
+                toastr.warning($.i18n.prop('selectDate'));
+
+                return;
+            }
+            $("#myModalLabel").text($.i18n.prop('modify'));
+            $("#txt_tname").val(arrselections[0].name);
+            $("#txt_number").val(arrselections[0].number);
+            $("#txt_grade").val(arrselections[0].grade);
+            $("#txt_cno").val(arrselections[0].tclass);
+            $("#txt_password").val(arrselections[0].password);
+            postdata.id = arrselections[0].id;
+            $('#myModal').modal();
+        });
+
+        $("#btn_delete").click(function () {
+            var arrselections = $("#tb_teacher").bootstrapTable('getSelections');
+            var ids="";
+            for(var i=0;i<arrselections.length;i++){
+            	if(i==arrselections.length-1){
+            		ids= ids+arrselections[i].id;
+            	}else{
+            		ids= ids+arrselections[i].id+",";
+            	}
+            }
+            if (arrselections.length <= 0) {
+                toastr.warning($.i18n.prop('selectDate'));
+                return;
+            }
+            bootbox.confirm($.i18n.prop('deleteTeacher'), function (result) {
+                if (result) {
+                	$.ajax({
+                        type: "post",
+                        url: "/user/private/teacherDel.action",
+                        data: { "ids": ids },
+                        success: function (data, status) {
+                            if (status == "success") {
+                                toastr.success($.i18n.prop('deleteSuccess'));
+                                $("#tb_teacher").bootstrapTable('refresh');
+                            }
+                        },
+                        error: function () {
+                            toastr.error('Error');
+                        },
+                        complete: function () {
+
+                        }
+
+                    });
+                }
+             });
+        });
+
+        $("#btn_submit").click(function () {
+        	$('#teacherForm').bootstrapValidator('validate'); 
+        	var arrselections = $("#tb_teacher").bootstrapTable('getSelections');
+        	if(arrselections != ""){
+        		if(arrselections[0].number==$("#txt_number").val()){
+            		$("#teacherForm").bootstrapValidator('removeField','txt_number');  
+            	}
+        	}
+        	var flag = $("#teacherForm").data('bootstrapValidator').isValid(); 
+        	if (flag){
+        		postdata.name = $("#txt_tname").val();
+                postdata.number = $("#txt_number").val();
+                postdata.grade = $("#txt_grade").val();
+                postdata.cno = $("#txt_cno").val();
+                postdata.password = $("#txt_password").val();
+                $.ajax({
+                    type: "post",
+                    url: "/user/private/teacherAddOrEdit.action",
+                    data: { "name": postdata.name, "number": postdata.number, "cno": postdata.cno, "grade": postdata.grade, "id": postdata.id, "password": postdata.password},
+                    success: function (data, status) {
+                        if (status == "success") {
+                            toastr.success($.i18n.prop('submitSuccess'));
+                            $("#myModal").modal('hide'); 
+                            $("#tb_teacher").bootstrapTable('refresh');
+                        }
+                    },
+                    error: function () {
+                        toastr.error('Error');
+                    },
+                    complete: function () {
+
+                    }
+
+                });
+        	}else{
+        	}
+            
+        });
+
+        $("#btn_query").click(function () {
+            $("#tb_teacher").bootstrapTable('refresh');
+        });
+        
+    };
+    return oInit;
+};
+
+function importData(role){
+	$('#importModal').modal();
+	$("#role").val(role);
+}
+
+function doUpload() {  
+    var formData = new FormData($( "#uploadForm" )[0]);  
+    var formData = new FormData($( "#uploadForm" )[0]);  
+    var filename = $('#targetfile').val();
+    var index1 = filename.lastIndexOf(".");
+    var index2 = filename.length;
+    var suffix = filename.substring(index1+1,index2);//后缀名
+    var msg = $.i18n.prop('importMsg');
+    if(suffix.toLowerCase().trim()=="xlsx" || suffix.toLowerCase().trim()=="xls"){
+	    $.ajax({  
+	         url: '/user/private/upload.action' ,  
+	         type: 'POST',  
+	         data: formData,  
+	         async: false,  
+	         cache: false,  
+	         contentType: false,  
+	         processData: false,  
+	         success: function (data) {  
+	        	 msg = msg.replace('%success',data.success).replace('%fail',data.fail);
+	           	 toastr.success(msg);
+	        	 $("#importModal").modal('hide'); 
+	        	 $("#tb_teacher").bootstrapTable('refresh');
+	         },  
+	         error: function () {  
+	        	 toastr.error("fail");  
+	         }  
+	    }); 
+    }else{
+    	toastr.warning($.i18n.prop('selectedExcel'));
+    }
+}
+function exportData(type){
+	var tname = $("#tname").val();
+    var grade = $("#grade").val();
+    var cno = $("#cno").val();
+    var url = "/user/private/exportExcel.action";
+    var form = $("<form></form>").attr("action", url).attr("method", "post");
+    form.append($("<input></input>").attr("type", "hidden").attr("name", "tname").attr("value", tname));
+    form.append($("<input></input>").attr("type", "hidden").attr("name", "grade").attr("value", grade));
+    form.append($("<input></input>").attr("type", "hidden").attr("name", "cno").attr("value", cno));
+    form.append($("<input></input>").attr("type", "hidden").attr("name", "type").attr("value", type));
+    form.appendTo('body').submit().remove();
+}
+function getvalue(i){
+	var grade = i.value;
+	$("#cno").empty();
+	$("#cno").append('<option value="">所有班级</option>');
+	$.ajax({
+        type: "post",
+        url: "/user/private/getCnoByGrade.action",
+        data: { "grade": grade},
+        success: function (data) {
+            for(var j=0;j<data.length;j++){
+                $("#cno").append('<option value="' + data[j] + '">' + data[j] + '班</option>');
+            }
+        },
+        error: function () {
+            toastr.error('Error');
+        },
+        complete: function () {
+
+        }
+
+    });
+}
+
+function detailSubject(tno,name){
+	$('#subjectDetail').modal();
+	$("#subjectBody").empty();
+	var str = $.i18n.prop('teacherDetail').replace("%name", name);
+	$("#subjectLabel").text(str);
+	$.ajax({
+        type: "post",
+        url: "/user/private/detailSubject.action",
+        data: { "tno": tno},
+        success: function (data) {
+            var tbBody = "";
+            for(var i=0;i<data.length;i++){
+            	tbBody += "<tr><td align='center'>"+data[i].subjectname+"</td>" + "<td align='center'>" + data[i].grade + "年级</td><td align='center'>"+data[i].cno+"班</td><td align='center'>"+data[i].count+"</td></tr>";
+            }
+            $("#subjectBody").append(tbBody);
+        },
+        error: function () {
+            toastr.error('Error');
+        },
+        complete: function () {
+			
+        }
+
+    });
+}
+function iframeHeight(){
+    // obj 这里是要获取父页面的iframe对象
+        var obj = parent.document.getElementById('iframe-page-content');
+    // 调整父页面的高度为此页面的高度
+        obj.height = this.document.body.scrollHeight;
+    }
+    
+function searchenter(event) {
+    event = event || window.event;
+    if (event.keyCode == 13) {
+    	$("#btn_query").trigger("click");     
+    }
+}        
+</script>
+<body onload="iframeHeight()">
+	<div class="panel-body">
+        <div class="panel panel-default">
+            <div class="panel-heading" id="searchTitle">查询条件</div>
+            <div class="panel-body" style="margin-bottom:10px;">
+                    <div class="form-group" style="margin-top:15px">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <input type="text" class="form-control" id="tname" onkeyup="searchenter(event);" placeholder="请输入教师姓名或教师编号" >
+                        </div>
+                            <button type="button" id="btn_query" class="btn btn-danger">搜索</button>
+                    </div>
+            </div>
+        </div>       
+
+        <div id="toolbar" class="btn-group">
+            <button id="btn_add" type="button" class="btn btn-success">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><span id="addbtn">新增</span>
+            </button>
+            <button id="btn_edit" type="button" class="btn btn-warning">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span><span id="modifybtn">修改</span>
+            </button>
+            <button id="btn_delete" type="button" class="btn btn-danger">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span id="delbtn">删除</span>
+            </button> <button id="btn_import" onclick="importData('1')" type="button" class="btn btn-info">
+                <span class="glyphicon glyphicon-import" aria-hidden="true"></span><span id="importbtn">导入数据</span>
+            </button>
+            <button id="btn_export" onclick="exportData('1')" type="button" class="btn btn-warning">
+                <span class="glyphicon glyphicon-export" aria-hidden="true"></span><span id="exportbtn">导出数据</span>
+            </button>
+        </div>
+        <table id="tb_teacher"></table>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+ 			<div class="modal-dialog" role="document">
+ 				<div class="modal-content">
+ 					<div class="modal-header">
+  						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+  							<h4 class="modal-title" id="myModalLabel">新增</h4>
+ 					</div>
+ 					<div class="modal-body">
+ 					<form id="teacherForm">
+	  					<div class="form-group">
+	  						<label for="txt_sname" id="t_name">教师姓名</label>
+	  						<input type="text" name="txt_tname" class="form-control" id="txt_tname" placeholder="教师姓名">
+	  					</div>
+	  					<div class="form-group">
+	  						<label for="txt_number" id="t_num">教师编号</label>
+	  						<input type="text" name="txt_number" class="form-control" id="txt_number" placeholder="教师编号">
+	  					</div>
+	  					<div class="form-group">
+	  						<label for="txt_password" id="t_pass">登录密码</label>
+	  						<input type="text" name="txt_password" class="form-control" id="txt_password" placeholder="登录密码">
+	  					</div>
+  					</form>
+ 				</div>
+ 				<div class="modal-footer">
+  					<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="cancle">关闭</span></button>
+  					<button type="button" id="btn_submit" class="btn btn-primary" ><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span><span class="save">保存</span></button>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+ 	<div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel">  
+	    <div class="modal-dialog" role="document">  
+	        <div class="modal-content">  
+	            <div class="modal-header">  
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close">  
+	                    <span aria-hidden="true">×</span>  
+	                </button>  
+	                <h4 class="modal-title" id="importModalLabel">导入教师用户数据</h4>  
+	            </div>  
+	            <div class="modal-body">
+	            	
+		            <div class="form-group">
+		            	<form id= "uploadForm">  
+					      <input type="hidden" name="role" id="role" value= ""/>  
+					      <label id="onlyexcel">请上传Excel文件</label>
+					      <input type="file" name="file" id="targetfile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
+						</form> 
+		  			</div>
+		  			<label ><span id="templete">参考模板</span>：<a id="filepath" href="/filemodel/teacher.xlsx"><span id="filename">teacher.xlsx</span></a></label> 
+	            </div>  
+	            <div class="modal-footer">  
+	                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="cancle">取消</span></button>  
+	                <button type="button" onclick="doUpload()" class="btn btn-primary"><span class="import_excel">导入</span></button>  
+	            </div>  
+	        </div>  
+	    </div>  
+	</div>
+	<div class="modal fade" id="subjectDetail" tabindex="-1" role="dialog" aria-labelledby="subjectLabel">
+ 			<div class="modal-dialog" role="document">
+ 				<div class="modal-content">
+ 					<div class="modal-header">
+  						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+  							<h4 class="modal-title" id="subjectLabel">新增</h4>
+ 					</div>
+ 					<div class="modal-body">
+ 						<table class="table">
+							<thead>
+							    <tr>
+							      <th style="text-align:center;" id="subname">课程名称</th>
+							      <th style="text-align:center;" id="t_grade">年级</th>
+							      <th style="text-align:center;" id="t_class">班级</th>
+							      <th style="text-align:center;" id="t_count">上课人数</th>
+							    </tr>
+						  </thead>
+						  <tbody id="subjectBody">
+						    
+						  </tbody>
+ 						</table>
+ 					</div>
+ 				<div class="modal-footer" style="text-align:center;">
+  					<button type="button" class="btn btn-danger" data-dismiss="modal"><span id="t_sure">确定</span></button>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+  </div>
+</body>
+</html>

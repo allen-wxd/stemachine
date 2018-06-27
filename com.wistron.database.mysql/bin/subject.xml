@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wistron.globaldata.SubjectMapper">
+
+	<insert id="addSubject" parameterType="com.wistron.globaldata.Subject">
+    	insert into subject(subjectname,teacherid) values(#{subjectName},#{teacherId})
+    </insert>
+    
+    <update id="updateSubjectById" parameterType="com.wistron.globaldata.Subject">
+        update subject set subjectname=#{subjectName}, teacherid=#{teacherId} where id=#{id}
+    </update>
+	
+	<select id="getSubjectList" parameterType="java.util.HashMap" resultType="com.wistron.globaldata.Subject">
+			select a.id as id, a.subjectname as subjectname,b.name as teachername,b.number as teacherid from subject a,teacher b 
+			<where>
+				a.teacherid=b.number
+	             <if test="subjectname!=null and subjectname!=''">
+	                 and a.subjectname like '%${subjectname}%' 
+	             </if>
+        	</where>
+        	ORDER BY a.id desc limit ${offset}, ${limit}	
+	</select>
+	
+	<select id="getSubjectCount" resultType = "int" parameterType="String">
+			select count(*) from subject a,teacher b 
+			<where>
+			a.teacherid=b.number
+	             <if test="subjectname!=null and subjectname!=''">
+	               and a.subjectname like '%${subjectname}%' 
+	             </if>
+        	</where>
+	</select>
+	
+	<select id="getStudentCountById" parameterType="int" resultType ="int">
+		select count(*) FROM student where FIND_IN_SET('${_parameter}',subjectid)
+	</select>
+	
+	<delete id="delSubjectById" parameterType="int">
+    	delete from subject where id=#{id}
+    </delete>
+    
+    <update id="updateStudentSubjectId" parameterType="int">
+    	update student set subjectid=replace(subjectid,'${_parameter}','') where FIND_IN_SET('${_parameter}',subjectid);
+    </update>
+    
+    <select id="getSubject" resultType ="com.wistron.globaldata.Subject">
+    	select id,subjectname from subject;
+    </select>
+</mapper>
+

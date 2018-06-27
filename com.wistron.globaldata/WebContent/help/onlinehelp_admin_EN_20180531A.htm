@@ -1,0 +1,408 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>STEMachine Online Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0"/> 
+<link type="image/x-icon"   href="img/favicon.ico"  rel="icon">
+<link href="css/style_en.css" rel="stylesheet" />
+<link href="css/fontsbootstrap.css" rel="stylesheet" />
+<style type="text/css">
+
+</style>
+</head>
+<body>
+	<div>
+		<div id="firstDiv" class="fistDivClass" style="background: #373737; height: 51px;color: white; padding-left: 20px; position: fixed; top:0; left: 0; right: 0; z-index: 1030;" >
+			<span style="color: #ec5944; font-size: 30px; line-height: 51px;">STEM</span><span style="font-size: 27px; line-height: 51px;">achine.</span>
+		</div>
+			
+		<div class="secondDivClass" style="padding: 20px; margin-top: 50px;">
+
+
+
+<H1><A class="anchor" name="Top"></A>STEMachine Online Help</H1>
+<p class="toc"><A href="#overview">Overview</A></p>
+<p class="toc"><A href="#login">Login</A></p>
+<p class="toc"><A href="#student">Manage Students</A></p>
+<p class="toc2"><A href="#importstu">Import Students</A></p>
+<p class="toc2"><A href="#stucourse">Assign Courses</A></p>
+<p class="toc2"><A href="#deletestu">Delete Students</A></p>
+<p class="toc2"><A href="#editstu">Edit Students</A></p>
+<p class="toc2"><A href="#exportstu">Export Student List</A></p>
+<p class="toc2"><A href="#findstu">Find a Student</A></p>
+<p class="toc"><A href="#teacher">Manage Teachers</A></p>
+<p class="toc2"><A href="#importtea">Import Teachers</A></p>
+<p class="toc2"><A href="#deletetea">Delete Teachers</A></p>
+<p class="toc2"><A href="#edittea">Edit Teachers</A></p>
+<p class="toc2"><A href="#exporttea">Export Teacher List</A></p>
+<p class="toc2"><A href="#findtea">Find a Teacher</A></p>
+<p class="toc"><A href="#course">Manage Courses</A></p>
+<p class="toc2"><A href="#newcourse">Add a Course</A></p>
+<p class="toc2"><A href="#editcourse">Edit a Course</A></p>
+<p class="toc2"><A href="#delcourse">Delete a Course</A></p>
+<p class="toc2"><A href="#exportcourse">Export Course Roster</A></p>
+
+  <!-- PegHelp -->
+<HR>
+<!-- ************************Topic Break************************* -->
+<H1><A class="anchor" name="overview"></A>Overview</H1>
+<p class="indent1">STEMachine is a learning platform for students to practice Python coding and project development. STEMachine delivers an engaging learning experience with the help of a mechanical arm that students can control via Python coding. Through creating and designing projects that manipulate the mechanical arm in different ways, students can discover the fun in coding and project development.</p>
+
+<p class="indent1">This document will help you learn how to use the administrator account to import and maintain the student and teacher accounts on the platform.</p>
+
+<p class="indent1"><strong>Disclaimer:</strong></p>
+<ul>
+<li>The product description and the images displayed in this document are intended as a guide and the actual product may differ slightly in some respects. Please refer to the actual product.</li>
+</ul>
+
+  <!-- PegHelp -->
+<HR>
+<!-- ************************Topic Break************************* -->
+<H1><A class="anchor" name="login"></A>Login</H1>
+<p class="indent1">Open your browser and go to the following address:</p>
+<p class="indent2">http://ServerIP:8080/htm/login.html</p>
+<p class="indent1">Please replace &quot;ServerIP&quot; with the IP address of your STEMachine server. Port 8080 is the default port. If you have configured a different port during the system installation, please change &quot;8080&quot; to the port you configured. If you do not know the server address, please consult the technical support person who set up the system for you.</p>
+<div class="indent1 note1">
+<p><strong>Note: </strong>It is recommended that you use Chrome browser to access STEMachine.</p>
+</div>
+<p class="indent1">Enter the account and password for the administrator account.</p>
+<p class="indent2" style="line-height: 100%;">Account: admin</p>
+<p class="indent2" style="line-height: 100%;">Password: 123456</p>
+<p class="indent1">Click <strong>Sign in</strong>.</p>
+<p class="indent2"><strong>You may want to:</strong></p>
+<ul>
+<li><A href="#Top">Go back to the top</A></li>
+</ul>
+<HR>
+<!-- ************************Topic Break************************* -->
+<H1><A class="anchor" name="student"></A>Manage Students</h1>
+<p class="indent1">After you have logged in using the administrator account, click <strong>Manage students</strong> in the left pane. You can perform the following actions:</p>
+<ul>
+<li class="indent1"><A href="#importstu">Import Students</A></li>
+<li class="indent1"><a href="#stucourse">Assign Courses</a></li>
+<li class="indent1"><A href="#deletestu">Delete Students</A></li>
+<li class="indent1"><a href="#editstu">Edit Students</a></li>
+<li class="indent1"><A href="#exportstu">Export Student List</A></li>
+<li class="indent1"><A href="#findstu">Find a Student</A></li>
+</ul>
+<hr align="left" width="680" />
+<h2><A class="anchor" name="importstu"></A>Import Students</h2>
+<p class="indent2">Before the students can use  STEMachine, you need to first import student accounts into the system.</p>
+<p class="indent2">You can add student accounts via the following two ways:</p>
+<ul>
+<li class="indent2"><A href="#batchstu">Batch Import Student Accounts</A></li>
+<li class="indent2"><A href="#onestu">Create a Student Account Manually</A></li>
+</ul>
+<p class="indent2">We recommend that you use the Batch Import method to save time. This way, you can add all the student accounts you need in one operation.</p>
+<h3><A class="anchor" name="batchstu"></A>Batch Import Student Accounts</h3>
+<ol>
+<li>Click <strong>Manage students</strong> >> <strong>Import data</strong>.</li>
+<li>In the Template section, click &quot;学生.xlsx&quot; to download the student account template. The template file is an Excel document. Please make sure you have installed Microsoft Excel before you open it. </li>
+<li>Open the template file using Excel. You will see the following table:</li>
+<p><img src="img/excel0.PNG" class="res1" alt="Excel table"/></p>
+<li>In the table, fill in the student ID, grade, class, name, and student number. Since the student ID also serves as the student's login account, please make sure there are no duplicate student IDs in the table. You can refer to the picture below for an example of what a finished student template file looks like. (Please note that the student information in the picture are intended as examples only. Please use your students' real information in your own template file.) After you have finished editing the template file, save it and exit Excel.</li>
+<p><img src="img/excel1.PNG" class="res1" alt="Excel table"/></p>
+<li>On  the STEMachine page, go to <strong>Manage students</strong> >> <strong>Import data</strong>. Click <strong>Choose File</strong> and select the template file you made.</li>
+<li>Please wait patiently for the file to upload. Afterwards, the file name you selected will appear on the right side of the Choose File button. Click <strong>Import data</strong>.</li>
+<li>After the accounts have been imported, a success message will appear. The accounts you imported will appear on the student list. If you cannot find those accounts, try refreshing the page. If the import failed, a failure message will appear. Please check your template file to make sure it is in the correct format. </li>
+</ol>
+
+<div class="indent1 note1">
+<p><strong>Note: </strong>The default password for all imported accounts is 123456.</p>
+</div>
+
+
+
+<h3><A class="anchor" name="onestu"></A>Create a Student Account Manually</h3>
+<ol>
+<li>Click <strong>Manage students</strong> >> <strong>New</strong>.</li>
+<li>Fill in the student information. </li>
+<p><img src="img/ennstu.PNG" class="res1" alt="Add student manually"/></p>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+
+<p class="indent2"><strong>You may want to:</strong></p>
+<ul>
+<li><A href="#importtea">Import Teachers</A></li>
+<li><A href="#newcourse">Add a Course</A></li>
+<li><A href="#editstu">Edit Students</A></li>
+<li><A href="#deletestu">Delete Students</A></li>
+<li><A href="#student">Go back to Manage Students</A></li>
+<li><A href="#Top">Go back to the top</A></li>
+</ul>
+<hr align="left" width="680" />
+<H2><A class="anchor" name="stucourse"></A>Assign Courses</H2>
+<p class="indent2">After you have added student accounts, you can then assign courses to the students. Before you do that, please make sure you have already <a href="#importtea">imported teacher accounts</a> and <a href="#newcourse">added courses</a>.</p>
+<ol>
+<li>Click <strong>Manage students</strong> in the left pane.</li>
+<li>Select the students to whom you want to assign courses. Multiple selection is supported.</li>
+<li>Click the <strong>Assign courses</strong> button. </li>
+<li>Select the courses you want to assign to the students. Multiple selection is supported.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+
+<p class="indent2"><strong>You may want to:</strong></p>
+<ul>
+<li><A href="#editstu">Edit Students</A></li>
+<li><A href="#importstu">Import Students</A></li>
+<li><A href="#student">Go back to Manage Students</A></li>
+<li><A href="#Top">Go back to the top</A></li>
+</ul>
+<hr align="left" width="680" />
+<H2><A class="anchor" name="deletestu"></A>Delete Students</H2>
+<ol>
+<li>Click <strong>Manage students</strong> in the left pane.</li>
+<li>Select the students you want to delete (multiple selection is supported).</li>
+<li>Click the <strong>Delete</strong> button.</li>
+<li>Click <strong>OK</strong> to confirm deletion.</li>
+</ol>
+
+<p class="indent2"><strong>You may want to:</strong></p>
+<ul>
+<li><A href="#editstu">Edit Students</A></li>
+<li><A href="#importstu">Import Students</A></li>
+<li><A href="#student">Go back to Manage Students</A></li>
+<li><A href="#Top">Go back to the top</A></li>
+</ul>
+<hr align="left" width="680" />
+<H2><A class="anchor" name="editstu"></A>Edit Students</H2>
+<ol>
+<li>Click <strong>Manage students</strong> in the left pane.</li>
+<li>Select the student you want to edit (you can only select one student).</li>
+<li>Click <strong>Edit</strong>.</li>
+<li>Edit the student information as desired.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<p class="indent2"><strong>You may want to:</strong></p>
+<ul>
+<li><A href="#importstu">Import Students</A></li>
+<li><A href="#deletestu">Delete Students</A></li>
+<li><A href="#student">Go back to Manage Students</A></li>
+<li><A href="#Top">Go back to the top</A></li>
+</ul>
+<hr align="left" width="680" />
+<h2><A class="anchor" name="exportstu"></A>Export Student List</h2>
+<ol>
+<li>Click <strong>Manage students</strong> in the left pane.</li>
+<li>Click <strong>Export data</strong> to export the student list to an Excel file and download it.</li>
+</ol>
+
+<p class="indent2"><strong>You may want to:</strong></p>
+<ul>
+<li><A href="#importstu">Import Students</A></li>
+<li><A href="#student">Go back to Manage Students</A></li>
+<li><A href="#Top">Go back to the top</A></li>
+</ul>
+<hr align="left" width="680" />
+<h2><A class="anchor" name="findstu"></A>Find a Student</h2>
+<ol>
+<li>Click <strong>Manage students</strong> in the left pane.</li>
+<li>You can view all the student accounts in the system. Click <i class="glyphicon glyphicon-refresh"></i> to refresh the list; click <i class="glyphicon glyphicon-list-alt"></i> to switch view; click <i class="glyphicon glyphicon-th"></i> to select the detail information you wish to see about each account. Click the Name or Student ID column header to sort by that column.</li>
+<li>In the Search criteria section, select the desired search criteria. You can search by name, grade, class and course.</li>
+<li>Click <strong>Search</strong> to perform a search.</li>
+</ol>
+
+<p class="indent2"><strong>You may want to:</strong></p>
+<ul>
+<li><A href="#editstu">Edit Students</A></li>
+<li><A href="#student">Go back to Manage Students</A></li>
+<li><A href="#Top">Go back to the top</A></li>
+</ul>
+
+  <!-- PegHelp -->
+<HR>
+<!-- ************************Topic Break************************* -->
+  <H1><A class="anchor" name="teacher"></A>Manage Teachers</H1>
+  <p class="indent1">After you have logged in using the administrator account, click <strong>Manage teachers</strong> in the left pane. You can perform the following actions:</p>
+<ul>
+<li class="indent1"><A href="#importtea">Import Teachers</A></li>
+<li class="indent1"><A href="#deletetea">Delete Teachers</A></li>
+<li class="indent1"><a href="#edittea">Edit Teachers</a></li>
+<li class="indent1"><A href="#exporttea">Export Teacher List</A></li>
+<li class="indent1"><A href="#findtea">Find a Teacher</A></li>
+</ul>
+<hr align="left" width="680" />
+<h2><A class="anchor" name="importtea"></A>Import Teachers</h2>
+<p class="indent2">Before the teachers can use  STEMachine, you need to first import teacher accounts into the system.</p>
+<p class="indent2">You can add teacher accounts via the following two ways:</p>
+<ul>
+  <li class="indent2"><A href="#batchtea">Batch Import Teachers</A></li>
+<li class="indent2"><A href="#onetea">Create a Teacher Account Manually</A></li>
+</ul>
+<p class="indent2">We recommend that you use the Batch Import method to save time. This way, you can add all the teacher accounts you need in one operation.</p>
+<h3><A class="anchor" name="batchtea"></A>Batch Import Teachers</h3>
+<ol>
+<li>Click <strong>Manage teachers</strong> >> <strong>Import data</strong>.</li>
+<li>In the Template section, click &quot;教师.xlsx&quot; to download the teacher account template. The template file is an Excel document. Please make sure you have installed Microsoft Excel before you open it.</li>
+<li>Open the template file using Excel. You will see the following table:</li>
+<p><img src="img/excel2.PNG" class="res1" alt="Excel table"/></p>
+<li>In the table, fill in the teacher ID, school, grade, class, name, and course. The teacher ID also serves as the teacher's login account. You can refer to the picture below for an example of what a finished teacher template file looks like. (Please note that the teacher information in the picture are intended as examples only. Please use your teachers' real information in your own template file.) After you have finished editing the template file, save it and exit Excel.</li>
+<p><img src="img/excel3.PNG" class="res1" alt="Excel table"/></p>
+<li>On  the STEMachine page, go to <strong>Manage teachers</strong> &gt;&gt; <strong>Import data</strong>. Click <strong>Choose File</strong> and select the template file you made.</li>
+<li>Please wait patiently for the file to upload. Afterwards, the file name you selected will appear on the right side of the Choose File button. Click <strong>Import data</strong>.</li>
+<li>After the accounts have been imported, a success message will appear. The accounts you imported will appear on the teacher list. If you cannot find these accounts, try refreshing the page. If the import failed, a failure message will appear. Please check your template file to make sure it is in the correct format. </li>
+</ol>
+<div class="indent1 note1">
+  <p><strong>Note: </strong>The default password for all imported accounts is 123456.</p>
+</div>
+<h3><A class="anchor" name="onetea"></A>Create a Teacher Account Manually</h3>
+<ol>
+  <li>Click <strong>Manage teachers</strong> &gt;&gt; <strong>New</strong>.</li>
+  <li>Fill in the teacher information. Please note that the teacher ID also serves as the teacher's login account.</li>
+  <p><img src="img/enntea.PNG" class="res1" alt="Add teacher manually"/></p>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+
+<p class="indent2"><strong>You may want to:</strong></p>
+<ul>
+<li><A href="#importstu">Import Students</A></li>
+<li><A href="#newcourse">Add a Course</A></li>
+<li><A href="#edittea">Edit Teachers</A></li>
+<li><A href="#deletetea">Delete Teachers</A></li>
+<li><A href="#teacher">Go back to Manage Teachers</A></li>
+<li><A href="#Top">Go back to the top</A></li>
+</ul>
+<hr align="left" width="680" />
+<H2><A class="anchor" name="deletetea"></A>Delete Teachers</H2>
+<ol>
+  <li>Click <strong>Manage teachers</strong> in the left pane.</li>
+  <li>Select the teachers you want to delete (multiple selection is supported).</li>
+  <li>Click the <strong>Delete</strong> button.</li>
+  <li>Click <strong>OK</strong> to confirm deletion.</li>
+</ol>
+
+<p class="indent2"><strong>You may want to:</strong></p>
+<ul>
+<li><A href="#edittea">Edit Teachers</A></li>
+<li><A href="#importtea">Import Teachers</A></li>
+<li><A href="#teacher">Go back to Manage Teachers</A></li>
+<li><A href="#Top">Go back to the top</A></li>
+</ul>
+<hr align="left" width="680" />
+<H2><A class="anchor" name="edittea"></A>Edit Teachers</H2>
+<ol>
+  <li>Click <strong>Manage teachers</strong> in the left pane.</li>
+  <li>Select the teacher you want to edit (you can only select one teacher).</li>
+  <li>Click <strong>Edit</strong>.</li>
+  <li>Edit the teacher information as desired.</li>
+  <li>Click <strong>Save</strong>.</li>
+</ol>
+<p class="indent2"><strong>You may want to:</strong></p>
+<ul>
+<li><A href="#importtea">Import Teachers</A></li>
+<li><A href="#deletetea">Delete Teachers</A></li>
+<li><A href="#teacher">Go back to Manage Teachers</A></li>
+<li><A href="#Top">Go back to the top</A></li>
+</ul>
+<hr align="left" width="680" />
+<h2><A class="anchor" name="exporttea"></A>Export Teacher List</h2>
+<ol>
+  <li>Click <strong>Manage teachers</strong> in the left pane.</li>
+  <li>Click <strong>Export data</strong> to export the teacher list to an Excel file and download it.</li>
+</ol>
+
+<p class="indent2"><strong>You may want to:</strong></p>
+<ul>
+<li><A href="#importtea">Import Teachers</A></li>
+<li><A href="#teacher">Go back to Manage Teachers</A></li>
+<li><A href="#Top">Go back to the top</A></li>
+</ul>
+<hr align="left" width="680" />
+<h2><A class="anchor" name="findtea"></A>Find a Teacher</h2>
+<ol>
+  <li>Click <strong>Manage teachers</strong> in the left pane.</li>
+  <li>You can view all the teacher accounts in the system. Click <i class="glyphicon glyphicon-refresh"></i> to refresh the list; click <i class="glyphicon glyphicon-list-alt"></i> to switch view; click <i class="glyphicon glyphicon-th"></i> to select the detail information you wish to see about each account. Click the Name or Teacher ID column header to sort by that column.</li>
+  <li>In the Search section, you can search for a specific teacher directly by name.</li>
+  <li>Click <strong>Search</strong> to perform a search.</li>
+  <li>You can click <img src="img/button.PNG" alt="Button"> in the Course count column to view the teacher's course list.</li>
+</ol>
+
+<p class="indent2"><strong>You may want to:</strong></p>
+<ul>
+<li><A href="#edittea">Edit Teachers</A></li>
+<li><A href="#teacher">Go back to Manage Teachers</A></li>
+<li><A href="#Top">Go back to the top</A></li>
+</ul>
+  <!-- PegHelp -->
+<HR>
+<!-- ************************Topic Break************************* -->
+  <H1><A class="anchor" name="course"></A>Manage Courses</H1>
+  <p class="indent1">Click <strong>Manage courses</strong> in the left pane to manage courses. You can use the search bar at the top of the right pane to find specific courses quickly. Click <i class="glyphicon glyphicon-refresh"></i> to refresh the course list; click <i class="glyphicon glyphicon-list-alt"></i> to switch view; click <i class="glyphicon glyphicon-th"></i> to select the detail information you wish to see about each course. You can perform the following actions:</p>
+<ul>
+<li class="indent1"><A href="#newcourse">Add a Course</A></li>
+<li class="indent1"><A href="#editcourse">Edit a Course</A></li>
+<li class="indent1"><a href="#delcourse">Delete a Course</a></li>
+<li class="indent1"><A href="#exportcourse">Export Course Roster</A></li>
+</ul>
+<hr align="left" width="680" />
+<h2><A class="anchor" name="newcourse"></A>Add a Course</h2>
+<ol>
+<li>Click <strong>Manage courses</strong> >> <strong>New</strong>.</li>
+<li>Fill in the course name and select an instructor for the course.</li>
+<p><img src="img/enncourse.PNG" class="res1" alt="Add teacher manually"/></p>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<div class="indent1 note1">
+<p><strong>Note: </strong>You are required to pick an instructor for the course. So please make sure you have already <a href="#importtea">imported teacher accounts</a> before you start adding courses.</p>
+<p><strong>Note: </strong>After you have added a course, you need to assign students to the course. Please refer to <a href="#stucourse">Assign Courses</a> for details on how to do that. </p>
+</div>
+<p class="indent2"><strong>You may want to:</strong></p>
+<ul>
+<li><A href="#stucourse">Add Students to a Course</A></li>
+<li><A href="#importtea">Import Teachers</A></li>
+<li><A href="#delcourse">Delete a Course</A></li>
+<li><A href="#course">Go back to Manage Courses</A></li>
+<li><A href="#Top">Go back to the top</A></li>
+</ul>
+<hr align="left" width="680" />
+<H2><A class="anchor" name="editcourse"></A>Edit a Course</H2>
+<ol>
+<li>Click <strong>Manage courses</strong> in the left pane.</li>
+<li>Select the course you want to edit. (You can only select one course at a time.)</li>
+<li>Click <strong>Edit</strong>.</li>
+<li>Edit the course as desired.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<p class="indent2"><strong>You may want to:</strong></p>
+<ul>
+<li><A href="#newcourse">Add a Course</A></li>
+<li><A href="#course">Go back to Manage Courses</A></li>
+<li><A href="#Top">Go back to the top</A></li>
+</ul>
+<hr align="left" width="680" />
+<H2><A class="anchor" name="delcourse"></A>Delete a Course</H2>
+<ol>
+<li>Click <strong>Manage courses</strong> from the left pane.</li>
+<li>Select the courses you want to delete. Multiple selection is supported.</li>
+<li>Click <strong>Delete</strong>.</li>
+<li>Click <strong>OK</strong> to confirm deletion.</li>
+</ol>
+
+<p class="indent2"><strong>You may want to:</strong></p>
+<ul>
+<li><A href="#newcourse">Add a Course</A></li>
+<li><A href="#course">Go back to Manage Courses</A></li>
+<li><A href="#Top">Go back to the top</A></li>
+</ul>
+<hr align="left" width="680" />
+<H2><A class="anchor" name="exportcourse"></A>Export Course Roster</H2>
+<ol>
+<li>Click <strong>Manage courses</strong> in the left pane.</li>
+<li>Find the course you want to export. You can use the search bar to find specific courses quickly.</li>
+<li>In the Student count column, click <i style="color:#f07860" class="glyphicon glyphicon-share-alt"></i> to export the course roster to an Excel file and download it.</li>
+<li>Your browser will start downloading the exported Excel file.</li>
+</ol>
+<p class="indent2"><strong>You may want to:</strong></p>
+<ul>
+<li><A href="#newcourse">Add a Course</A></li>
+<li><A href="#course">Go back to Manage Courses</A></li>
+<li><A href="#Top">Go back to the top</A></li>
+</ul>
+
+
+</div>
+</div>
+</body>
+</html>

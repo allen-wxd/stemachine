@@ -1,0 +1,50 @@
+body{
+        background: whitesmoke;
+        font-size: 15px;
+    }
+		
+		   .secondDivClass{
+           
+		   	background: whitesmoke ;
+		   	margin-top: 10%;
+		  
+		   }
+			   .secondDiv1{
+			   	background:#ec5944;
+			   	margin-bottom: 2px;
+			   	width: 250px;
+			   	height: 50px;
+			   	font-size: 45px;
+			   	color: white;
+			   	text-align: left;
+			   }
+			   .secondDiv2{
+			   	margin-left: ;
+			   	margin-bottom: -8px;
+			   	background: #ec5944;
+			   	width: 200px;
+			   	height: 50px;
+			   	font-size: 45px;
+			   	color: white;
+			   	text-align: left;
+			  
+			   }
+			   .input1{
+			   height: 100%;
+			   width:174px ;
+			   border:1px solid #ec5944;
+			   color: #ec5944;
+			   background: white;
+			    }
+		   
+			.thirdDivClass{
+			position:absolute;
+			bottom:0px;
+			width: 100%;
+			height: 40px;
+			background: #373737;
+			}
+			.input2{
+				height: 100%;
+				background: whitesmoke;
+			}  

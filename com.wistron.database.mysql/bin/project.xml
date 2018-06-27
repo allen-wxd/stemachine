@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wistron.globaldata.ProjectMapper">
+	<insert id="addProject" parameterType="com.wistron.globaldata.Project" >
+	        insert into project ( pname ,sno ,submitdate ,code ,videourl ,starttime ,endtime ,status) values (#{pname},#{sno},#{submitDate},#{code},#{videoUrl},#{startTime},#{endTime},#{status})   
+	</insert>
+	
+	<select id="projectList" parameterType="java.util.HashMap" resultType="com.wistron.globaldata.Project">
+		select pid,pname,sno,date_format(submitdate, '%Y/%m/%d %H:%i:%s' ) as submitdate,code,videourl,starttime,endtime,status from project
+				where sno = '${sno}'	
+	             <if test="pname!=null and pname!=''">
+	                 and pname like '%${pname}%' 
+	             </if>
+        	order by pid desc limit ${offset}, ${limit}
+	</select>
+	
+	<select id="getTotalCount" parameterType="java.util.HashMap" resultType="int">
+		select count(*) from project
+			where sno = '${sno}'
+             <if test="pname!=null and pname!=''">
+                 and pname like '%${pname}%' 
+             </if>
+	</select>
+	
+	<delete id="delProjectById" parameterType="String">
+		delete from project where pid=#{pid}
+	</delete>
+	
+	<update id="updateProjectName" parameterType="com.wistron.globaldata.Project">
+		update project set pname=#{pname} where pid=#{pid}
+	</update>
+	
+	<select id="getCommandById" parameterType="String" resultType="String">
+		select code from project where pid=#{pid}
+	</select>
+	
+	<update id="updateCommandById" parameterType="java.util.HashMap">
+		update project set code=#{code},submitdate=#{time} where pid=#{pid}
+	</update>
+	
+	<update id="updateProjectVideo" parameterType="java.util.HashMap">
+		update project set status=#{status},videourl=#{path} where pid=#{pid}
+	</update>
+	
+	<select id="getVideoPathById" parameterType="String" resultType="String">
+		select videourl from project where pid=#{pid}
+	</select>
+	
+	<update id="modifyStatus" parameterType="java.util.HashMap">
+		update project 
+		<trim prefix="set" suffixOverrides=",">
+		  <if test="status!=null">status=#{status},</if>
+		  <if test="time!=null">submitdate=#{time},</if>
+		</trim>
+		where pid=#{pid}
+	</update>
+</mapper>

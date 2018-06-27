@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:osgix="http://www.springframework.org/schema/osgi-compendium"
+   xmlns:ctx="http://www.springframework.org/schema/context"
+   xmlns:osgi="http://www.eclipse.org/gemini/blueprint/schema/blueprint"
+   xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	  http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context 
+	  http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/osgi-compendium 
+	  http://www.springframework.org/schema/osgi-compendium/spring-osgi-compendium.xsd
+	  http://www.eclipse.org/gemini/blueprint/schema/blueprint 
+       http://www.eclipse.org/gemini/blueprint/schema/blueprint/gemini-blueprint.xsd">
+       
+	<bean name="dispatcherServlet" class="org.springframework.web.servlet.DispatcherServlet">
+		<property name="contextConfigLocation">
+			<value>/META-INF/spring/*.xml</value>
+		</property>
+	</bean>    
+
+<!-- 	<bean name="servletRegistry" class="com.wistron.web.registry.DispatcherServletRegistry" init-method="init">
+		<property name="urlPattern" value="/*.action"></property>
+		<property name="servletName" value="dispatcherServlet"></property>
+		<property name="dispatcherServlet" ref="dispatcherServlet"></property>
+	</bean> -->
+	
+	<bean name="resourceRegistry" class="com.wistron.web.registry.ResourceRegistry" init-method="init">
+		<property name="resMapping">
+			<map>  
+				<entry key="/loginjs" value="/WebContent/js"/>
+				<entry key="/i18n" value="/WebContent/i18n"/>
+				<entry key="/logincss" value="/WebContent/css"/>
+				<entry key="/loginimages" value="/WebContent/images"/>
+				<entry key="/fonts" value="/WebContent/fonts"/>
+				<entry key="/htm" value="/WebContent/html"/>
+				<entry key="/filemodel" value="/WebContent/excelmodel"/>
+	            <entry key="/help" value="/WebContent/help"/>
+				
+			</map> 
+		</property>
+	</bean>
+	
+ 	<bean name="jspRegistry" class="com.wistron.web.registry.JspRegistry" init-method="init">
+	</bean>
+</beans>

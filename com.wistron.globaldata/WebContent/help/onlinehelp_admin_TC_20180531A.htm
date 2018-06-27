@@ -1,0 +1,409 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>STEMachine 線上說明</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0"/> 
+<link type="image/x-icon"   href="img/favicon.ico"  rel="icon">
+<link href="css/style_tc.css" rel="stylesheet" />
+<link href="css/fontsbootstrap.css" rel="stylesheet" />
+<style type="text/css">
+
+</style>
+</head>
+<body>
+	<div>
+		<div id="firstDiv" class="fistDivClass" style="background: #373737; height: 51px;color: white; padding-left: 20px; position: fixed; top:0; left: 0; right: 0; z-index: 1030;" >
+			<span style="color: #ec5944; font-size: 30px; line-height: 51px;">STEM</span><span style="font-size: 27px; line-height: 51px;">achine.</span>
+		</div>
+			
+		<div class="secondDivClass" style="padding: 20px; margin-top: 50px;">
+
+
+
+<H1><A class="anchor" name="Top"></A>STEMachine 線上說明</H1>
+<p class="toc"><A href="#overview">簡介</A></p>
+<p class="toc"><A href="#login">登入</A></p>
+<p class="toc"><A href="#student">學生管理</A></p>
+<p class="toc2"><A href="#importstu">匯入學生</A></p>
+<p class="toc2"><A href="#stucourse">課程匹配</A></p>
+<p class="toc2"><A href="#deletestu">刪除學生</A></p>
+<p class="toc2"><A href="#editstu">修改學生</A></p>
+<p class="toc2"><A href="#exportstu">匯出學生清單</A></p>
+<p class="toc2"><A href="#findstu">查找學生</A></p>
+<p class="toc"><A href="#teacher">教師管理</A></p>
+<p class="toc2"><A href="#importtea">匯入教師</A></p>
+<p class="toc2"><A href="#deletetea">刪除教師</A></p>
+<p class="toc2"><A href="#edittea">修改教師</A></p>
+<p class="toc2"><A href="#exporttea">匯出教師清單</A></p>
+<p class="toc2"><A href="#findtea">查找教師</A></p>
+<p class="toc"><A href="#course">課程管理</A></p>
+<p class="toc2"><A href="#newcourse">新增課程</A></p>
+<p class="toc2"><A href="#editcourse">修改課程</A></p>
+<p class="toc2"><A href="#delcourse">刪除課程</A></p>
+<p class="toc2"><A href="#exportcourse">匯出課程學生清單</A></p>
+  <!-- PegHelp -->
+<HR>
+<!-- ************************Topic Break************************* -->
+<H1><A class="anchor" name="overview"></A>簡介</H1>
+<p class="indent1">STEMachine 是一款教授學生體驗並使用 Python 語言程式設計的教學平臺。STEMachine 以機械手臂為媒介，讓學生能夠通過基本的 Python 語言應用，操縱機械手臂，體驗專案開發的經驗與樂趣。</p>
+
+<p class="indent1">本文將為您詳細介紹如何使用管理員帳號匯入和維護系統上的學生和教師帳號。</p>
+
+<p class="indent1"><strong>聲明：</strong></p>
+<ul>
+<li>實際產品中的圖示、文字及實際操作可能與本文檔存在細微差異，請以實際為准。</li>
+</ul>
+
+  <!-- PegHelp -->
+<HR>
+<!-- ************************Topic Break************************* -->
+<H1><A class="anchor" name="login"></A>登入</H1>
+<p class="indent1">打開瀏覽器，訪問 STEMachine 網址：</p>
+<p class="indent2">http://ServerIP:8080/htm/login.html</p>
+<p class="indent1">其中，請將 ServerIP 替換成您實際的 STEMachine 伺服器 IP 地址。8080 為默認埠，如果您在系統安裝時設定了其他埠，請替換為其他埠號。如果您不知道伺服器 IP 位址，請諮詢幫您搭建 STEMachine 系統的技術服務人員。</p>
+<div class="indent1 note1">
+<p><strong>注意：</strong>建議您使用 Chrome 瀏覽器訪問 STEMachine。</p>
+</div>
+<p class="indent1">輸入管理員帳號的使用者名稱和密碼：</p>
+<p class="indent2" style="line-height: 100%;">使用者名稱：admin</p>
+<p class="indent2" style="line-height: 100%;">初始密碼：123456</p>
+<p class="indent1">點選“<strong>登入</strong>”。</p>
+<p class="indent2"><strong>您可能想要：</strong></p>
+<ul>
+<li><A href="#Top">返回到頂部</A></li>
+</ul>
+<HR>
+<!-- ************************Topic Break************************* -->
+<H1><A class="anchor" name="student"></A>學生管理</h1>
+<p class="indent1">使用管理員帳號登入後，點選左側的“<strong>學生管理</strong>”，管理學生帳號。您可以對學生帳號做以下操作：</p>
+<ul>
+<li class="indent1"><A href="#importstu">匯入學生</A></li>
+<li class="indent1"><a href="#stucourse">課程匹配</a></li>
+<li class="indent1"><A href="#deletestu">刪除學生</A></li>
+<li class="indent1"><a href="#editstu">修改學生</a></li>
+<li class="indent1"><A href="#exportstu">匯出學生清單</A></li>
+<li class="indent1"><A href="#findstu">查找學生</A></li>
+</ul>
+<hr align="left" width="680" />
+<h2><A class="anchor" name="importstu"></A>匯入學生</h2>
+<p class="indent2">在學生可以使用 STEMachine 系統之前，您首先需要匯入學生帳號。</p>
+<p class="indent2">有以下兩種方式可以添加學生帳號：</p>
+<ul>
+<li class="indent2"><A href="#batchstu">批量匯入學生</A></li>
+<li class="indent2"><A href="#onestu">手動添加學生</A></li>
+</ul>
+<p class="indent2">建議您使用批量匯入的方式，以節省時間。您只需一次操作，就可以添加所有學生帳號。</p>
+<h3><A class="anchor" name="batchstu"></A>批量匯入學生</h3>
+<ol>
+<li>點選“<strong>學生管理</strong>” >> “<strong>匯入資料</strong>”。</li>
+<li>在“參考範例”一欄，點選“<strong>学生.xlsx</strong>”，下載學生帳號範本檔。範本檔為 Excel 格式，使用前請確保您已經安裝了 Microsoft Excel。</li>
+<li>用 Excel 打開您下載的範本檔。您將會看到諸如下圖格式的表格：</li>
+<p><img src="img/excel0.PNG" class="res1" alt="Excel table"/></p>
+<li>在表格中填入每個學生的學籍號、年級、班級、姓名和學號。姓名長度需在 2-8 個字元範圍內。其中，學籍號即為學生的登入帳號，因此，每個學生的學籍號不得重複。如下圖所示（圖中文字僅為舉例說明用，實際操作中請填入真實的學生資訊）。填寫完畢後，請儲存檔案並退出 Excel。</li>
+<p><img src="img/excel1.PNG" class="res1" alt="Excel table"/></p>
+<li>在 STEMachine 頁面，前往“<strong>學生管理</strong>” >> “<strong>匯入資料</strong>”。點選“<strong>選擇檔案</strong>”，選擇您剛才製作好的 Excel 檔案。</li>
+<li>請耐心等待文件上傳。上傳完畢後，在“選擇檔案”按鈕右側，會出現您所選檔案的檔案名。完成後，點選“<strong>匯入資料</strong>”。</li>
+<li>匯入成功後，會出現提示，您可以在學生清單中看到匯入的學生帳號。如果沒有看到帳號，可以嘗試刷新頁面。如果匯入失敗，螢幕會出現失敗提示消息。請對比範本，檢查您的 Excel 檔案格式是否正確。</li>
+</ol>
+
+<div class="indent1 note1">
+<p><strong>注意：</strong>匯入帳號的密碼將自動設為預設密碼“123456”。</p>
+</div>
+
+
+
+<h3><A class="anchor" name="onestu"></A>手動添加學生</h3>
+<ol>
+<li>點選“<strong>學生管理</strong>” >> “<strong>新增</strong>”。</li>
+<li>填寫學生資訊。</li>
+<p><img src="img/tcnstu.PNG" class="res1" alt="Add student manually"/></p>
+<li>點選“<strong>儲存</strong>”。</li>
+</ol>
+
+<p class="indent2"><strong>您可能想要：</strong></p>
+<ul>
+<li><A href="#importtea">匯入教師</A></li>
+<li><A href="#newcourse">添加課程</A></li>
+<li><A href="#editstu">修改學生</A></li>
+<li><A href="#deletestu">刪除學生</A></li>
+<li><A href="#student">返回到學生管理</A></li>
+<li><A href="#Top">返回到頂部</A></li>
+</ul>
+<hr align="left" width="680" />
+<H2><A class="anchor" name="stucourse"></A>課程匹配</H2>
+<p class="indent2">添加了學生帳號之後，您還可以為學生分配課程。在分配課程之前，請確保您已經<a href="#importtea">匯入了教師帳號</a>並<a href="#newcourse">添加了相應的課程</a>。</p>
+<ol>
+<li>點選左側的“<strong>學生管理</strong>”。</li>
+<li>選中您要分配課程的學生（支持多選）。</li>
+<li>點選上方的“<strong>課程匹配</strong>”按鈕。</li>
+<li>勾選您要給這些學生分配的課程（支持多選）。</li>
+<li>點選“<strong>儲存</strong>”按鈕。</li>
+</ol>
+
+<p class="indent2"><strong>您可能想要：</strong></p>
+<ul>
+<li><A href="#editstu">修改學生</A></li>
+<li><A href="#importstu">匯入學生</A></li>
+<li><A href="#student">返回到學生管理</A></li>
+<li><A href="#Top">返回到頂部</A></li>
+</ul>
+<hr align="left" width="680" />
+<H2><A class="anchor" name="deletestu"></A>刪除學生</H2>
+<ol>
+<li>點選左側的“<strong>學生管理</strong>”。</li>
+<li>選中您要刪除的學生（支持多選）。</li>
+<li>點選上方的“<strong>刪除</strong>”按鈕。</li>
+<li>點選“<strong>確認</strong>”按鈕，確認刪除。</li>
+</ol>
+
+<p class="indent2"><strong>您可能想要：</strong></p>
+<ul>
+<li><A href="#editstu">修改學生</A></li>
+<li><A href="#importstu">匯入學生</A></li>
+<li><A href="#student">返回到學生管理</A></li>
+<li><A href="#Top">返回到頂部</A></li>
+</ul>
+<hr align="left" width="680" />
+<H2><A class="anchor" name="editstu"></A>修改學生</H2>
+<ol>
+<li>點選左側的“<strong>學生管理</strong>”。</li>
+<li>選中您要編輯的學生（只能選中單個學生）。</li>
+<li>點選上方的“<strong>修改</strong>”按鈕。</li>
+<li>按需要修改學生資訊。</li>
+<li>點選“<strong>儲存</strong>”按鈕。</li>
+</ol>
+<p class="indent2"><strong>您可能想要：</strong></p>
+<ul>
+<li><A href="#importstu">匯入學生</A></li>
+<li><A href="#deletestu">刪除學生</A></li>
+<li><A href="#student">返回到學生管理</A></li>
+<li><A href="#Top">返回到頂部</A></li>
+</ul>
+<hr align="left" width="680" />
+<h2><A class="anchor" name="exportstu"></A>匯出學生清單</h2>
+<ol>
+<li>點選左側的“<strong>學生管理</strong>”。</li>
+<li>點選“<strong>匯出資料</strong>”，將學生帳號匯出為一個 Excel 檔案並下載。</li>
+</ol>
+
+<p class="indent2"><strong>您可能想要：</strong></p>
+<ul>
+<li><A href="#importstu">匯入學生</A></li>
+<li><A href="#student">返回到學生管理</A></li>
+<li><A href="#Top">返回到頂部</A></li>
+</ul>
+<hr align="left" width="680" />
+<h2><A class="anchor" name="findstu"></A>查找學生</h2>
+<ol>
+<li>點選左側的“<strong>學生管理</strong>”。</li>
+<li>您可以查看系統中已有的學生帳號。點選 <i class="glyphicon glyphicon-refresh"></i>，刷新頁面；點選 <i class="glyphicon glyphicon-list-alt"></i>，切換檢視；點選 <i class="glyphicon glyphicon-th"></i>，勾選您要顯示的資訊。點選“姓名”或“學籍號”列標題，可以進行排序。</li>
+<li>在“查詢準則”一欄，選定查詢準則。您可以按姓名、學籍號、年級、班級、課程進行搜尋。</li>
+<li>點選“<strong>搜尋</strong>”按鈕。</li>
+</ol>
+
+<p class="indent2"><strong>您可能想要：</strong></p>
+<ul>
+<li><A href="#editstu">修改學生</A></li>
+<li><A href="#student">返回到學生管理</A></li>
+<li><A href="#Top">返回到頂部</A></li>
+</ul>
+
+  <!-- PegHelp -->
+<HR>
+<!-- ************************Topic Break************************* -->
+  <H1><A class="anchor" name="teacher"></A>教師管理</H1>
+  <p class="indent1">使用管理員帳號登入後，點選左側的“<strong>教師管理</strong>”，管理教師帳號。您可以對教師帳號做以下操作：</p>
+<ul>
+<li class="indent1"><A href="#importtea">匯入教師</A></li>
+<li class="indent1"><A href="#deletetea">刪除教師</A></li>
+<li class="indent1"><a href="#edittea">修改教師</a></li>
+<li class="indent1"><A href="#exporttea">匯出教師清單</A></li>
+<li class="indent1"><A href="#findtea">查找教師</A></li>
+</ul>
+<hr align="left" width="680" />
+<h2><A class="anchor" name="importtea"></A>匯入教師</h2>
+<p class="indent2">在教師可以使用 STEMachine 系統之前，您首先需要匯入教師帳號。</p>
+<p class="indent2">有以下兩種方式可以添加教師帳號：</p>
+<ul>
+<li class="indent2"><A href="#batchtea">批量匯入教師</A></li>
+<li class="indent2"><A href="#onetea">手動添加教師</A></li>
+</ul>
+<p class="indent2">建議您使用批量匯入的方式，以節省時間。您只需一次操作，就可以添加所有教師帳號。</p>
+<h3><A class="anchor" name="batchtea"></A>批量匯入教師</h3>
+<ol>
+<li>點選“<strong>教師管理</strong>” >> “<strong>匯入資料</strong>”。</li>
+<li>在“參考範例”一欄，點選“<strong>教师.xlsx</strong>”，下載教師帳號範本檔。範本檔為 Excel 格式，使用前請確保您已經安裝了 Microsoft Excel。</li>
+<li>用 Excel 打開您下載的範本檔。您將會看到諸如下圖格式的表格：</li>
+<p><img src="img/excel2.PNG" class="res1" alt="Excel table"/></p>
+<li>在表格中填入每個教師的教師編號、學校名稱、年級、班級、姓名和科目。姓名為 2-8 個字元。其中，教師編號即為教師的登入帳號。如下圖所示（圖中文字僅為舉例說明用，實際操作中請填入真實的教師資訊）。填寫完畢後，請儲存檔案並退出 Excel。</li>
+<p><img src="img/excel3.PNG" class="res1" alt="Excel table"/></p>
+<li>在 STEMachine 頁面，前往“<strong>教師管理</strong>” >> “<strong>匯入資料</strong>”。點選“<strong>選擇檔案</strong>”，選擇您剛才製作好的 Excel 檔案。</li>
+<li>請耐心等待文件上傳。上傳完畢後，在“選擇檔案”按鈕右側，會出現您所選檔案的檔案名。完成後，點選“<strong>匯入資料</strong>”。</li>
+<li>匯入成功後，會出現提示，您可以在教師清單中看到匯入的教師帳號。如果沒有看到帳號，可以嘗試刷新頁面。如果匯入失敗，螢幕會出現失敗提示消息。請檢查您的 Excel 檔案格式是否正確。</li>
+</ol>
+<div class="indent1 note1">
+  <p><strong>注意：</strong>匯入帳號的密碼將自動設為預設密碼“123456”。</p>
+</div>
+
+
+
+<h3><A class="anchor" name="onetea"></A>手動添加教師</h3>
+<ol>
+<li>點選“<strong>教師管理</strong>” >> “<strong>新增</strong>”。</li>
+<li>填寫教師資訊。其中，教師編號即為教師的登入帳號。</li>
+<p><img src="img/tcntea.PNG" class="res1" alt="Add teacher manually"/></p>
+<li>點選“<strong>儲存</strong>”。</li>
+</ol>
+
+<p class="indent2"><strong>您可能想要：</strong></p>
+<ul>
+<li><A href="#importstu">匯入學生</A></li>
+<li><A href="#newcourse">添加課程</A></li>
+<li><A href="#edittea">修改教師</A></li>
+<li><A href="#deletetea">刪除教師</A></li>
+<li><A href="#teacher">返回到教師管理</A></li>
+<li><A href="#Top">返回到頂部</A></li>
+</ul>
+<hr align="left" width="680" />
+<H2><A class="anchor" name="deletetea"></A>刪除教師</H2>
+<ol>
+<li>點選左側的“<strong>教師管理</strong>”。</li>
+<li>選中您要刪除的教師（支持多選）。</li>
+<li>點選上方的“<strong>刪除</strong>”按鈕。</li>
+<li>點選“<strong>確認</strong>”按鈕，確認刪除。</li>
+</ol>
+
+<p class="indent2"><strong>您可能想要：</strong></p>
+<ul>
+<li><A href="#edittea">修改教師</A></li>
+<li><A href="#importtea">匯入教師</A></li>
+<li><A href="#teacher">返回到教師管理</A></li>
+<li><A href="#Top">返回到頂部</A></li>
+</ul>
+<hr align="left" width="680" />
+<H2><A class="anchor" name="edittea"></A>修改教師</H2>
+<ol>
+<li>點選左側的“<strong>教師管理</strong>”。</li>
+<li>選中您要編輯的教師（只能選中單個教師）。</li>
+<li>點選上方的“<strong>修改</strong>”按鈕。</li>
+<li>按需要修改教師資訊。</li>
+<li>點選“<strong>儲存</strong>”按鈕。</li>
+</ol>
+<p class="indent2"><strong>您可能想要：</strong></p>
+<ul>
+<li><A href="#importtea">匯入教師</A></li>
+<li><A href="#deletetea">刪除教師</A></li>
+<li><A href="#teacher">返回到教師管理</A></li>
+<li><A href="#Top">返回到頂部</A></li>
+</ul>
+<hr align="left" width="680" />
+<h2><A class="anchor" name="exporttea"></A>匯出教師清單</h2>
+<ol>
+<li>點選左側的“<strong>教師管理</strong>”。</li>
+<li>點選“<strong>匯出資料</strong>”，將教師帳號匯出為一個 Excel 檔案並下載。</li>
+</ol>
+
+<p class="indent2"><strong>您可能想要：</strong></p>
+<ul>
+<li><A href="#importtea">匯入教師</A></li>
+<li><A href="#teacher">返回到教師管理</A></li>
+<li><A href="#Top">返回到頂部</A></li>
+</ul>
+<hr align="left" width="680" />
+<h2><A class="anchor" name="findtea"></A>查找教師</h2>
+<ol>
+<li>點選左側的“<strong>教師管理</strong>”。</li>
+<li>您可以查看系統中已有的教師帳號。點選 <i class="glyphicon glyphicon-refresh"></i>，刷新頁面；點選 <i class="glyphicon glyphicon-list-alt"></i>，切換檢視；點選 <i class="glyphicon glyphicon-th"></i>，勾選您要顯示的資訊。點選“姓名”或“教師編號”列標題，可以進行排序。</li>
+<li>在“查詢準則”字段，您可以按姓名或教師編號搜尋教師。</li>
+<li>點選“<strong>搜尋</strong>”按鈕。</li>
+<li>在“授課數量”一列，點選右側的 <img src="img/button.PNG" alt="Button"> 按鈕，可以查看該教師的課程詳情。</li>
+</ol>
+
+<p class="indent2"><strong>您可能想要：</strong></p>
+<ul>
+<li><A href="#edittea">修改教師</A></li>
+<li><A href="#teacher">返回到教師管理</A></li>
+<li><A href="#Top">返回到頂部</A></li>
+</ul>
+  <!-- PegHelp -->
+<HR>
+<!-- ************************Topic Break************************* -->
+  <H1><A class="anchor" name="course"></A>課程管理</H1>
+  <p class="indent1">使用管理員帳號登入後，點選左側的“<strong>課程管理</strong>”，管理系統中的課程。您可以使用上方的搜尋欄快速找到特定課程。點選 <i class="glyphicon glyphicon-refresh"></i>，可以刷新課程清單；點選 <i class="glyphicon glyphicon-list-alt"></i>，切換檢視；點選 <i class="glyphicon glyphicon-th"></i>，勾選您要顯示的資訊。您可以對課程做以下操作：</p>
+<ul>
+<li class="indent1"><A href="#newcourse">新增課程</A></li>
+<li class="indent1"><A href="#editcourse">修改課程</A></li>
+<li class="indent1"><a href="#delcourse">刪除課程</a></li>
+<li class="indent1"><A href="#exportcourse">匯出課程學生清單</A></li>
+</ul>
+<hr align="left" width="680" />
+<h2><A class="anchor" name="newcourse"></A>新增課程</h2>
+<ol>
+<li>點選“<strong>課程管理</strong>” >> “<strong>新增</strong>”。</li>
+<li>填寫課程名稱，選擇任課老師。</li>
+<p><img src="img/tcncourse.PNG" class="res1" alt="Add teacher manually"/></p>
+<li>點選“<strong>儲存</strong>”。</li>
+</ol>
+<div class="indent1 note1">
+<p><strong>注意：</strong>任課老師為必填項，因此，在添加課程之前，請先確保您已經<a href="#importtea">匯入了教師帳號</a>。</p>
+<p><strong>注意：</strong>添加了課程之後，您需要為該課程添加學生，具體請參閱<a href="#stucourse">課程匹配</a>。</p>
+</div>
+<p class="indent2"><strong>您可能想要：</strong></p>
+<ul>
+<li><A href="#stucourse">為課程添加學生</A></li>
+<li><A href="#importtea">匯入教師</A></li>
+<li><A href="#delcourse">刪除課程</A></li>
+<li><A href="#course">返回到課程管理</A></li>
+<li><A href="#Top">返回到頂部</A></li>
+</ul>
+<hr align="left" width="680" />
+<H2><A class="anchor" name="editcourse"></A>修改課程</H2>
+<ol>
+<li>點選左側的“<strong>課程管理</strong>”。</li>
+<li>選中您要編輯的課程（只能選中單個課程）。</li>
+<li>點選上方的“<strong>修改</strong>”按鈕。</li>
+<li>按需要修改課程資訊。</li>
+<li>點選“<strong>儲存</strong>”按鈕。</li>
+</ol>
+<p class="indent2"><strong>您可能想要：</strong></p>
+<ul>
+<li><A href="#newcourse">添加課程</A></li>
+<li><A href="#course">返回到課程管理</A></li>
+<li><A href="#Top">返回到頂部</A></li>
+</ul>
+<hr align="left" width="680" />
+<H2><A class="anchor" name="delcourse"></A>刪除課程</H2>
+<ol>
+<li>點選左側的“<strong>課程管理</strong>”。</li>
+<li>選中您要刪除的課程（支持多選）。</li>
+<li>點選上方的“<strong>刪除</strong>”按鈕。</li>
+<li>點選“<strong>確認</strong>”按鈕，確認刪除。</li>
+</ol>
+
+<p class="indent2"><strong>您可能想要：</strong></p>
+<ul>
+<li><A href="#newcourse">添加課程</A></li>
+<li><A href="#course">返回到課程管理</A></li>
+<li><A href="#Top">返回到頂部</A></li>
+</ul>
+<hr align="left" width="680" />
+<H2><A class="anchor" name="exportcourse"></A>匯出課程學生清單</H2>
+<ol>
+<li>點選左側的“<strong>課程管理</strong>”。</li>
+<li>找到您要匯出的課程。如有需要，您可以使用上方的搜尋框快速找到特定課程。</li>
+<li>在“上課人數”一欄，點選右側的 <i style="color:#f07860" class="glyphicon glyphicon-share-alt"></i> 按鈕。</li>
+<li>該課程的學生清單會匯出為一個 Excel 檔案進行下載。</li>
+</ol>
+<p class="indent2"><strong>您可能想要：</strong></p>
+<ul>
+<li><A href="#newcourse">添加課程</A></li>
+<li><A href="#course">返回到課程管理</A></li>
+<li><A href="#Top">返回到頂部</A></li>
+</ul>
+
+</div>
+</div>
+</body>
+</html>

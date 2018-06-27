@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:osgix="http://www.springframework.org/schema/osgi-compendium"
+   xmlns:ctx="http://www.springframework.org/schema/context"
+   xmlns:osgi="http://www.eclipse.org/gemini/blueprint/schema/blueprint"
+   xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	  http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context 
+	  http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/osgi-compendium 
+	  http://www.springframework.org/schema/osgi-compendium/spring-osgi-compendium.xsd
+	  http://www.eclipse.org/gemini/blueprint/schema/blueprint 
+       http://www.eclipse.org/gemini/blueprint/schema/blueprint/gemini-blueprint.xsd">
+       
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/login/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <bean name="/user/private/*.action" class="com.wistron.web.controllers.AdminController">
+    	<property name="sqlSession" ref="sqlMapService"></property> 
+    	<property name="teacherdao" ref="teacherdaoimp"></property>
+    </bean>
+
+
+    <bean name="teacherdaoimp" class="com.wistron.dao.TeacherDaoImp">
+         <property name="sqlsession" ref="sqlMapService"></property>
+    </bean>
+    <bean name="studentdaoimp" class="com.wistron.dao.StudentDaoImp">
+         <property name="sqlsession" ref="sqlMapService"></property>
+    </bean>
+    <bean name="superuserdaoimp" class="com.wistron.dao.SuperUserDaoImp">
+         <property name="sqlsession" ref="sqlMapService"></property>
+    </bean>
+
+    <bean name="/*.action" class="com.wistron.controller.LoginController">
+         <property name="superuserdao" ref="superuserdaoimp"></property>
+         <property name="teacherdao" ref="teacherdaoimp"></property>
+         <property name="studentdao" ref="studentdaoimp"></property>
+    </bean>
+   
+</beans>
